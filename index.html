@@ -9,6 +9,7 @@
 </head>
 <body>
 
+
   <header class="bg-hero py-5">
     <div class="container text-center py-4">
       <h1 class="display-3">Zona <span class="texto-rojo">DRS</span></h1>
@@ -143,6 +144,61 @@
         </div>
       </div>
     </section>
+     <section class="py-5" id="contacto">
+      <div class="container">
+        <h2 class="text-center mb-2">Contáctanos<span class="texto-rojo">.</span></h2>
+        <hr class="linea-roja mx-auto border-0 mb-4" style="height:4px; width:80px;">
+        <p class="text-center mb-5">¿Tienes preguntas o sugerencias? Escríbenos y te responderemos pronto.</p>
+
+        <div class="row justify-content-center">
+          <div class="col-md-10 col-lg-7">
+            <div class="card shadow-sm">
+              <div class="card-body p-4">
+
+                <!-- Cuando integren Formspree, cambien action por su endpoint: https://formspree.io/f/XXXXXXXX -->
+                <form id="formContacto" action="#" method="POST" class="needs-validation" novalidate>
+
+                  <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre"
+                           placeholder="Tu nombre completo" minlength="3" maxlength="60" required>
+                    <div class="invalid-feedback">Ingresa tu nombre (mínimo 3 caracteres).</div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="correo" class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control" id="correo" name="email"
+                           placeholder="tucorreo@ejemplo.com" required>
+                    <div class="invalid-feedback">Ingresa un correo válido.</div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="tel" class="form-control" id="telefono" name="telefono"
+                           placeholder="3001234567" pattern="[0-9+\s]{7,15}" required>
+                    <div class="invalid-feedback">Ingresa un teléfono válido (solo números, entre 7 y 15 dígitos).</div>
+                  </div>
+
+                  <div class="mb-4">
+                    <label for="mensaje" class="form-label">Mensaje</label>
+                    <textarea class="form-control" id="mensaje" name="mensaje" rows="5"
+                              placeholder="Escribe tu mensaje aquí..." minlength="10" maxlength="500" required></textarea>
+                    <div class="invalid-feedback">El mensaje debe tener al menos 10 caracteres.</div>
+                  </div>
+
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-enviar px-5">Enviar mensaje</button>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="js/app.js"></script>
   </main>
 
 </body>

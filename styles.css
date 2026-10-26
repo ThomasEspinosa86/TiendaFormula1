@@ -38,3 +38,21 @@ h1, h2, h3, h4, h5, h6, .titulo-raceline {
 .badge-rol { background-color: var(--f1-red); color: var(--f1-white); }
 .link-github { color: var(--muted-gray); }
 .link-github:hover { color: var(--f1-red); }
+
+.btn-enviar {
+  background-color: var(--f1-red);
+  color: var(--f1-white);
+  border: none;
+  font-family: "Raceline", Impact, "Arial Black", sans-serif;
+  letter-spacing: 1px;
+}
+.btn-enviar:hover,
+.btn-enviar:focus {
+  background-color: var(--f1-black);
+  color: var(--f1-white);
+}
+.form-control:focus {
+  border-color: var(--f1-red);
+  box-shadow: 0 0 0 .2rem rgba(255, 24, 1, .2);
+}
+.form-label { color: var(--f1-black); font-weight: 600; }

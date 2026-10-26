@@ -56,3 +56,30 @@ h1, h2, h3, h4, h5, h6, .titulo-raceline {
   box-shadow: 0 0 0 .2rem rgba(255, 24, 1, .2);
 }
 .form-label { color: var(--f1-black); font-weight: 600; }
+
+/* Estilos Formulario de Contacto Zona DRS */
+.form-label { 
+  color: var(--f1-black); 
+}
+
+.form-control { 
+  border-color: var(--border-gray); 
+}
+
+.form-control:focus { 
+  border-color: var(--f1-red); 
+  box-shadow: 0 0 0 .25rem rgba(255, 24, 1, .25); 
+}
+
+.btn-drs { 
+  background-color: var(--f1-red); 
+  border-color: var(--f1-red); 
+  color: var(--f1-white); 
+}
+
+.btn-drs:hover, 
+.btn-drs:focus { 
+  background-color: var(--f1-black); 
+  border-color: var(--f1-black); 
+  color: var(--f1-white); 
+}

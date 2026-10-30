@@ -31,6 +31,9 @@
 }
 
 .navbar-links a{
+    display: flex;
+    align-items: center;
+    gap: 8px;
     color:#ffffff;
     text-decoration: none;
     padding: 12px 20px;
@@ -60,4 +63,44 @@
 .full-top a{
     text-decoration: none;
     color: white;
+}
+
+/* parte de iconos y estilos para qeu qeude conforme ala 
+pagina web y sus ajustes */
+
+.nav-icon{
+    width: 18px;
+    height:18px;
+    filter: invert(1);
+}
+
+.cart-count{
+    color: #e10600;
+    font-size: 1.1rem
+}
+
+/* Se activa solo en pantallas de 768px o menos (Celulares y Tablets) */
+@media (max-width: 768px) {
+
+    /* 1. Cambiamos las dos listas de horizontal a vertical */
+    .navbar {
+        flex-direction: column; /* Apila la primera lista arriba y la segunda abajo */
+        gap: 10px;               /* Espacio entre la lista de enlaces y la de inicio de sesión */
+        padding: 10px 0;
+    }
+
+    /* 2. Ajustamos los enlaces */
+    .navbar-links {
+        justify-content: center; 
+        flex-wrap: wrap;        
+    }
+
+    .navbar-links a {
+        padding: 8px 10px;       
+        font-size: 0.85rem;      
+    }
+
+    .full-top {
+        font-size: 0.75rem;     
+    }
 }

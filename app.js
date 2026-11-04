@@ -1,6 +1,7 @@
 const formulario = document.getElementById('formContacto');
 
-formulario.addEventListener('submit', function(evento) {
+// Si la página no tiene este formulario, no se registra (antes rompía el resto del script)
+if (formulario) formulario.addEventListener('submit', function(evento) {
 
 evento.preventDefault();
 

@@ -4,11 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet" href="./css/sidebar.css">
     <link rel="stylesheet" href="./css/products.css">
     <title>Producto - Zona DRS</title>
 </head>
 
 <body>
+    <div class="dash">
+
+    <!--  BARRA LATERAL (la misma en todas las páginas del admin) -->
+    <aside class="dash-sidebar">
+        <a href="dashboard.html" class="dash-logo">Zona <span>DRS</span></a>
+        <p class="dash-logo-sub">Panel de administración</p>
+
+        <nav class="dash-menu" aria-label="Menú de administración">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="pedidos.html">Pedidos</a>
+            <a href="products.html" class="activo">Productos</a>
+            <a href="../Contactanos.html">Ver tienda</a>
+        </nav>
+
+        <div class="dash-sidebar-pie">
+            <span class="avatar-mini">AD</span>
+            <div>
+                <strong>Admin</strong>
+                <small>admin@zonadrs.com</small>
+            </div>
+        </div>
+    </aside>
+
+    <main class="dash-main">
     <header class="contenedor-header">
         <section class="principal">
             <div class="header-info">
@@ -20,7 +46,6 @@
             </div>
         </section>
     </header>
-    <main>
         <section class="columna-añadir">
             <section class="añadir-producto">
                 <div class="section-info">
@@ -193,6 +218,7 @@
             </section>
         </section>
     </main>
+    </div>
 </body>
 
 </html>

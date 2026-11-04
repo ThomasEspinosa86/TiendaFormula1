@@ -1,0 +1,102 @@
+
+
+
+
+/* Paletsa*/
+:root {
+  --primary: #FF1801;
+  --secondary: #000000;
+  --accent: #FFFFFF;
+  --surface: #1E1E1E;
+  --background: #F7F7F7;
+  --border: #D9D9D9;
+  --text-secondary: #666666;
+  --text-muted: #A3A3A3;
+  --info: #0071CE;
+  --success: #00B050;
+  --warning: #FFC000;
+
+  --bs-danger: #FF1801;      --bs-danger-rgb: 255, 24, 1;
+  --bs-dark: #1E1E1E;        --bs-dark-rgb: 30, 30, 30;
+  --bs-light: #F7F7F7;       --bs-light-rgb: 247, 247, 247;
+  --bs-info: #0071CE;        --bs-info-rgb: 0, 113, 206;
+  --bs-success: #00B050;     --bs-success-rgb: 0, 176, 80;
+  --bs-warning: #FFC000;     --bs-warning-rgb: 255, 192, 0;
+  --bs-secondary: #666666;   --bs-secondary-rgb: 102, 102, 102; /* "Cancelado" en gris, no negro */
+  --bs-border-color: #D9D9D9;
+  --bs-body-color: #666666;
+  --bs-heading-color: #000000;
+  --bs-link-color: #FF1801;
+  --bs-link-color-rgb: 255, 24, 1;
+  --bs-link-hover-color: #000000;
+  --bs-link-hover-color-rgb: 0, 0, 0;
+}
+
+body {
+  background-color: var(--background);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Raceline", Impact, "Arial Black", sans-serif;
+}
+
+
+.bg-dark h1,
+.bg-dark h2,
+.modal-header h2 { color: var(--accent); }
+
+/*  Botones  */
+.btn-danger {
+  --bs-btn-bg: #FF1801;
+  --bs-btn-border-color: #FF1801;
+  --bs-btn-hover-bg: #000000;
+  --bs-btn-hover-border-color: #000000;
+  --bs-btn-active-bg: #000000;
+  --bs-btn-active-border-color: #000000;
+  --bs-btn-focus-shadow-rgb: 255, 24, 1;
+}
+
+.btn-dark {
+  --bs-btn-bg: #1E1E1E;
+  --bs-btn-border-color: #1E1E1E;
+  --bs-btn-hover-bg: #FF1801;
+  --bs-btn-hover-border-color: #FF1801;
+  --bs-btn-active-bg: #FF1801;
+  --bs-btn-active-border-color: #FF1801;
+}
+
+.btn-outline-dark {
+  --bs-btn-color: #000000;
+  --bs-btn-border-color: #000000;
+  --bs-btn-hover-bg: #000000;
+  --bs-btn-hover-border-color: #000000;
+  --bs-btn-active-bg: #000000;
+  --bs-btn-active-border-color: #000000;
+}
+
+.form-label { color: var(--secondary); font-weight: 600; }
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 .2rem rgba(255, 24, 1, .2);
+}
+
+
+.table-dark {
+  --bs-table-bg: #1E1E1E;
+  --bs-table-border-color: #000000;
+}
+
+.table {
+  --bs-table-hover-bg: rgba(255, 24, 1, .06);
+}
+
+
+.text-bg-info { color: var(--accent) !important; } 
+
+
+
+
+.modal-content { border: 0; border-radius: .75rem; overflow: hidden; }
+.modal-header { border-bottom: 4px solid var(--primary); }

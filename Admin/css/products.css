@@ -1,0 +1,342 @@
+/* Gestión de productos - Zona DRS
+   Colores de la paleta en admin.css; fuente y barra lateral en sidebar.css. */
+
+/* Reset global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Sin Bootstrap los campos no heredan la fuente */
+input, button {
+    font-family: inherit;
+}
+
+/* ================= HEADER ================= */
+.contenedor-header {
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--primary);
+}
+
+.principal {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.subtitulo {
+    display: block;
+    color: var(--primary);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+}
+
+.titulo {
+    font-size: 3rem;
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+
+.header-contador span {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* ================= ESTRUCTURA PRINCIPAL ================= */
+/* Distribución en 2 columnas (Formulario a la izquierda, Lista a la derecha) */
+.columna-añadir {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+/* ================= COLUMNA IZQUIERDA: FORMULARIO ================= */
+.añadir-producto {
+    width: 320px;
+    flex-shrink: 0;
+    background-color: var(--accent);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+/* Encabezado negro de la tarjeta izquierda */
+.section-info {
+    background-color: var(--secondary);
+    color: var(--accent);
+    padding: 1.8rem 1.5rem;
+    border-bottom: 4px solid var(--primary);
+}
+
+.subtitulo-producto {
+    display: block;
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+}
+
+.titulo-producto {
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+/* Estilos de los inputs y labels del formulario */
+.añadir-producto form {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.nombre, .imagen {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+/* Solución para colocar PRECIO y STOCK al lado (4to hijo del formulario) */
+.añadir-producto form > div:nth-child(4) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem 0.75rem;
+}
+
+label {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--secondary);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.formulario {
+    width: 100%;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    font-size: 0.85rem;
+    outline: none;
+    background-color: var(--accent);
+    transition: border-color 0.2s ease;
+}
+
+.formulario:focus {
+    border-color: var(--secondary);
+}
+
+/* Botón de envío */
+.btn-guardar {
+    width: 100%;
+    background-color: var(--primary);
+    color: var(--accent);
+    border: none;
+    padding: 0.85rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 2px;
+    margin-top: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-guardar:hover {
+    background-color: var(--secondary);
+}
+
+/* ================= COLUMNA DERECHA: LISTA ================= */
+.lista-productos {
+    flex-grow: 1;
+    background-color: var(--accent);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    border-radius: 2px;
+    padding: 1.8rem 2rem;
+    min-height: 550px;
+}
+
+.header-lista {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+}
+
+.section-productos .subtitulo-producto {
+    color: var(--text-secondary);
+}
+
+.titulo-productos {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--secondary);
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+}
+
+.input-buscar {
+    padding: 0.6rem 1rem 0.6rem 2.2rem;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    font-size: 0.8rem;
+    width: 240px;
+    outline: none;
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E") no-repeat 0.7rem center;
+}
+
+.input-buscar:focus {
+    border-color: var(--secondary);
+}
+
+/* ================= TABLA DE PRODUCTOS ================= */
+.tabla-productos {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tabla-productos th {
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: var(--text-secondary);
+    letter-spacing: 0.8px;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.text-right {
+    text-align: right;
+}
+
+.tabla-productos td {
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+    font-size: 0.8rem;
+}
+
+.col-producto {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.img-producto {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 2px;
+    background-color: var(--border);
+}
+
+.info-prod {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.nombre-prod {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--secondary);
+    letter-spacing: -0.3px;
+}
+
+.sku-prod {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.categoria-prod {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.precio-prod {
+    font-weight: 800;
+    color: var(--secondary);
+}
+
+.estado-prod {
+    font-weight: 800;
+    font-size: 0.7rem;
+    color: var(--secondary);
+    letter-spacing: 0.5px;
+}
+
+.badge-stock {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    font-weight: 800;
+    font-size: 0.72rem;
+}
+
+.stock-ok {
+    background-color: rgba(0, 176, 80, .12);
+    color: var(--success);
+}
+
+.stock-bajo {
+    background-color: rgba(255, 24, 1, .1);
+    color: var(--primary);
+}
+
+.acciones {
+    text-align: right;
+}
+
+.btn-accion {
+    width: 32px;
+    height: 32px;
+    background-color: var(--accent);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    margin-left: 0.25rem;
+    transition: all 0.2s ease;
+}
+
+.btn-accion:hover {
+    border-color: var(--secondary);
+    background-color: var(--background);
+}
+
+.btn-eliminar:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1199px) {
+    .columna-añadir { flex-direction: column; align-items: stretch; }
+    .añadir-producto { width: 100%; }
+}
+
+@media (max-width: 768px) {
+    .principal,
+    .header-lista { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .titulo { font-size: 2rem; }
+    .lista-productos { padding: 1.25rem; overflow-x: auto; }
+    .input-buscar { width: 100%; }
+}

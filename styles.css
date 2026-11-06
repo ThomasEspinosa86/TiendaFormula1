@@ -1,9 +1,3 @@
-@font-face {
-  font-family: "Raceline";
-  src: url("../fonts/Raceline.ttf") format("truetype");
-  font-display: swap;
-}
- 
 :root {
   --f1-red: #FF1801;
   --f1-black: #000000;
@@ -51,17 +45,9 @@ h1, h2, h3, h4, h5, h6, .titulo-raceline {
   background-color: var(--f1-black);
   color: var(--f1-white);
 }
-.form-control:focus {
-  border-color: var(--f1-red);
-  box-shadow: 0 0 0 .2rem rgba(255, 24, 1, .2);
-}
 .form-label { color: var(--f1-black); font-weight: 600; }
 
 /* Estilos Formulario de Contacto Zona DRS */
-.form-label { 
-  color: var(--f1-black); 
-}
-
 .form-control { 
   border-color: var(--border-gray); 
 }

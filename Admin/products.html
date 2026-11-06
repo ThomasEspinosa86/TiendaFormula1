@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet" href="./css/sidebar.css">
+    <link rel="stylesheet" href="./css/products.css">
+    <title>Producto - Zona DRS</title>
+</head>
+
+<body>
+    <div class="dash">
+
+    <!--  BARRA LATERAL (la misma en todas las páginas del admin) -->
+    <aside class="dash-sidebar">
+        <a href="dashboard.html" class="dash-logo">Zona <span>DRS</span></a>
+        <p class="dash-logo-sub">Panel de administración</p>
+
+        <nav class="dash-menu" aria-label="Menú de administración">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="pedidos.html">Pedidos</a>
+            <a href="products.html" class="activo">Productos</a>
+            <a href="../Contactanos.html">Ver tienda</a>
+        </nav>
+
+        <div class="dash-sidebar-pie">
+            <span class="avatar-mini">AD</span>
+            <div>
+                <strong>Admin</strong>
+                <small>admin@zonadrs.com</small>
+            </div>
+        </div>
+    </aside>
+
+    <main class="dash-main">
+    <header class="contenedor-header">
+        <section class="principal">
+            <div class="header-info">
+                <span class="subtitulo">CATALOGO / CRUD</span>
+                <h1 class="titulo">GESTION DE PRODUCTOS - ZONA DRS</h1>
+            </div>
+            <div class="header-contador">
+                <span>5 PRODUCTOS REGISTRADOS</span>
+            </div>
+        </section>
+    </header>
+        <section class="columna-añadir">
+            <section class="añadir-producto">
+                <div class="section-info">
+                    <span class="subtitulo-producto">NUEVO REGISTRO</span>
+                    <h1 class="titulo-producto">AÑADIR PRODUCTO</h1>
+                </div>
+                <form action="">
+                    <div class="nombre">
+                        <label for="">NOMBRE</label>
+                        <input type="text" class="formulario" name="nombre" placeholder="Ej. Chaqueta Red Bull Tricolor">
+                    </div>
+
+                    <div class="nombre">
+                        <label for="">CODIGO</label>
+                        <input type="text" class="formulario" name="codigo" placeholder="Ej. COL-F1-001">
+                    </div>
+
+                    <div class="nombre">
+                        <label for="">CATEGORIA</label>
+                        <input type="text" class="formulario" name="categoria" placeholder="Ej. Edición Colombia">
+                    </div>
+
+                    <div class="nombre">
+                        <label for="">PRECIO (COP)</label>
+                        <input type="text" class="formulario" name="precio" placeholder="389000">
+
+                        <label for="">STOCK</label>
+                        <input type="text" class="formulario" name="stock" placeholder="10">
+                    </div>
+
+                    <div class="nombre">
+                        <label for="">ETIQUETA</label>
+                        <input type="text" class="formulario" name="etiqueta" placeholder="Ej. Bestseller">
+                    </div>
+
+                    <div class="nombre">
+                        <label for="">ESTADO</label>
+                        <input type="text" class="formulario" name="estado" placeholder="Activo">
+                    </div>
+
+                    <div class="imagen">
+                        <label for="">IMAGEN</label>
+                        <input type="text" class="formulario" name="imagen" placeholder="URL de la imagen">
+                    </div>
+
+                    <button type="submit" class="btn-guardar">
+                        GUARDAR PRODUCTO <span>&rarr;</span>
+                    </button>
+                </form>
+            </section>
+            <section class="lista-productos">
+                <div class="header-lista">
+                    <div class="section-productos">
+                        <span class="subtitulo-producto">LEER / ACTUALIZAR / ELIMINAR</span>
+                        <h1 class="titulo-productos">CHAQUETAS F1 </h1>
+                    </div>
+                    <div class="buscador-container">
+                        <input type="text" placeholder="Buscar por nombre o SKU" class="input-buscar">
+                    </div>
+                </div>
+
+                <table class="tabla-productos">
+                    <thead>
+                        <tr>
+                            <th>PRODUCTO</th>
+                            <th>CATEGORÍA</th>
+                            <th>PRECIO</th>
+                            <th>STOCK</th>
+                            <th>ESTADO</th>
+                            <th class="text-right">ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Producto 1 -->
+                        <tr>
+                            <td class="col-producto">
+                                <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=100&q=80" alt="Chaqueta Red Bull Tricolor" class="img-producto">
+                                <div class="info-prod">
+                                    <span class="nombre-prod">CHAQUETA RED BULL TRICOLOR</span>
+                                    <span class="sku-prod">COL-RBR-001</span>
+                                </div>
+                            </td>
+                            <td class="categoria-prod">Edición Colombia</td>
+                            <td class="precio-prod">$ 389.000</td>
+                            <td><span class="badge-stock stock-ok">14</span></td>
+                            <td class="estado-prod">ACTIVO</td>
+                            <td class="acciones">
+                                <button type="button" class="btn-accion btn-editar" title="Editar">✏️</button>
+                                <button type="button" class="btn-accion btn-eliminar" title="Eliminar">🗑️</button>
+                            </td>
+                        </tr>
+
+                        <!-- Producto 2 -->
+                        <tr>
+                            <td class="col-producto">
+                                <img src="https://images.unsplash.com/photo-1544441893-675973e31985?w=100&q=80" alt="Chaqueta Ferrari Vintage" class="img-producto">
+                                <div class="info-prod">
+                                    <span class="nombre-prod">CHAQUETA FERRARI VINTAGE</span>
+                                    <span class="sku-prod">COL-SF-002</span>
+                                </div>
+                            </td>
+                            <td class="categoria-prod">Heritage F1</td>
+                            <td class="precio-prod">$ 420.000</td>
+                            <td><span class="badge-stock stock-bajo">5</span></td>
+                            <td class="estado-prod">ACTIVO</td>
+                            <td class="acciones">
+                                <button type="button" class="btn-accion btn-editar" title="Editar">✏️</button>
+                                <button type="button" class="btn-accion btn-eliminar" title="Eliminar">🗑️</button>
+                            </td>
+                        </tr>
+
+                        <!-- Producto 3 -->
+                        <tr>
+                            <td class="col-producto">
+                                <img src="https://images.unsplash.com/photo-1548883354-7622d03aca27?w=100&q=80" alt="Chaqueta Mercedes AMG Bogota" class="img-producto">
+                                <div class="info-prod">
+                                    <span class="nombre-prod">CHAQUETA MERCEDES AMG BOGOTÁ</span>
+                                    <span class="sku-prod">COL-AMG-003</span>
+                                </div>
+                            </td>
+                            <td class="categoria-prod">Urban F1</td>
+                            <td class="precio-prod">$ 350.000</td>
+                            <td><span class="badge-stock stock-ok">8</span></td>
+                            <td class="estado-prod">ACTIVO</td>
+                            <td class="acciones">
+                                <button type="button" class="btn-accion btn-editar" title="Editar">✏️</button>
+                                <button type="button" class="btn-accion btn-eliminar" title="Eliminar">🗑️</button>
+                            </td>
+                        </tr>
+
+                        <!-- Producto 4 -->
+                        <tr>
+                            <td class="col-producto">
+                                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=100&q=80" alt="Bomber McLaren Medellin" class="img-producto">
+                                <div class="info-prod">
+                                    <span class="nombre-prod">BOMBER MCLAREN MEDELLÍN</span>
+                                    <span class="sku-prod">COL-MCL-004</span>
+                                </div>
+                            </td>
+                            <td class="categoria-prod">Streetwear F1</td>
+                            <td class="precio-prod">$ 365.000</td>
+                            <td><span class="badge-stock stock-ok">9</span></td>
+                            <td class="estado-prod">ACTIVO</td>
+                            <td class="acciones">
+                                <button type="button" class="btn-accion btn-editar" title="Editar">✏️</button>
+                                <button type="button" class="btn-accion btn-eliminar" title="Eliminar">🗑️</button>
+                            </td>
+                        </tr>
+
+                        <!-- Producto 5 -->
+                        <tr>
+                            <td class="col-producto">
+                                <img src="https://images.unsplash.com/photo-1520975954732-35dd22299614?w=100&q=80" alt="Chaqueta Williams Cali Speed" class="img-producto">
+                                <div class="info-prod">
+                                    <span class="nombre-prod">CHAQUETA WILLIAMS CALI SPEED</span>
+                                    <span class="sku-prod">COL-WIL-005</span>
+                                </div>
+                            </td>
+                            <td class="categoria-prod">Trackwear</td>
+                            <td class="precio-prod">$ 310.000</td>
+                            <td><span class="badge-stock stock-ok">18</span></td>
+                            <td class="estado-prod">ACTIVO</td>
+                            <td class="acciones">
+                                <button type="button" class="btn-accion btn-editar" title="Editar">✏️</button>
+                                <button type="button" class="btn-accion btn-eliminar" title="Eliminar">🗑️</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </section>
+    </main>
+    </div>
+</body>
+
+</html>

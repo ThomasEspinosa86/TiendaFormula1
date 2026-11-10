@@ -1,23 +1,23 @@
-/* Gestión de productos - Zona DRS
-   Colores de la paleta en admin.css; fuente y barra lateral en sidebar.css. */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800;1,900&display=swap');
 
 /* Reset global */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-/* Sin Bootstrap los campos no heredan la fuente */
-input, button {
-    font-family: inherit;
+body {
+    background-color: #f4f3ef; /* Fondo crema claro original de la imagen */
+    color: #111111;
+    min-height: 100vh;
 }
 
 /* ================= HEADER ================= */
 .contenedor-header {
-    padding-bottom: 1.5rem;
-    margin-bottom: 2rem;
-    border-bottom: 2px solid var(--primary);
+    padding: 2.5rem 3rem 1.5rem 3rem;
+    border-bottom: 1px solid #e2e0d8;
 }
 
 .principal {
@@ -28,7 +28,7 @@ input, button {
 
 .subtitulo {
     display: block;
-    color: var(--primary);
+    color: #e54d3b; /* Color rojo/naranja */
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.8px;
@@ -47,13 +47,17 @@ input, button {
 
 .header-contador span {
     font-size: 0.75rem;
-    color: var(--text-secondary);
+    color: #8c8c8c;
     font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
 }
 
 /* ================= ESTRUCTURA PRINCIPAL ================= */
+main {
+    padding: 2.5rem 3rem;
+}
+
 /* Distribución en 2 columnas (Formulario a la izquierda, Lista a la derecha) */
 .columna-añadir {
     display: flex;
@@ -65,7 +69,7 @@ input, button {
 .añadir-producto {
     width: 320px;
     flex-shrink: 0;
-    background-color: var(--accent);
+    background-color: #ffffff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
     border-radius: 2px;
     overflow: hidden;
@@ -73,16 +77,15 @@ input, button {
 
 /* Encabezado negro de la tarjeta izquierda */
 .section-info {
-    background-color: var(--secondary);
-    color: var(--accent);
+    background-color: #111111;
+    color: #ffffff;
     padding: 1.8rem 1.5rem;
-    border-bottom: 4px solid var(--primary);
 }
 
 .subtitulo-producto {
     display: block;
     font-size: 0.68rem;
-    color: var(--text-muted);
+    color: #888888;
     font-weight: 700;
     letter-spacing: 0.8px;
     margin-bottom: 0.4rem;
@@ -121,7 +124,7 @@ input, button {
 label {
     font-size: 0.7rem;
     font-weight: 800;
-    color: var(--secondary);
+    color: #333333;
     letter-spacing: 0.5px;
     text-transform: uppercase;
 }
@@ -129,23 +132,23 @@ label {
 .formulario {
     width: 100%;
     padding: 0.65rem 0.8rem;
-    border: 1px solid var(--border);
+    border: 1px solid #e0e0e0;
     border-radius: 3px;
     font-size: 0.85rem;
     outline: none;
-    background-color: var(--accent);
+    background-color: #ffffff;
     transition: border-color 0.2s ease;
 }
 
 .formulario:focus {
-    border-color: var(--secondary);
+    border-color: #111111;
 }
 
 /* Botón de envío */
 .btn-guardar {
     width: 100%;
-    background-color: var(--primary);
-    color: var(--accent);
+    background-color: #e54d3b;
+    color: #ffffff;
     border: none;
     padding: 0.85rem 1rem;
     font-size: 0.75rem;
@@ -161,13 +164,13 @@ label {
 }
 
 .btn-guardar:hover {
-    background-color: var(--secondary);
+    background-color: #cc3e2d;
 }
 
 /* ================= COLUMNA DERECHA: LISTA ================= */
 .lista-productos {
     flex-grow: 1;
-    background-color: var(--accent);
+    background-color: #ffffff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
     border-radius: 2px;
     padding: 1.8rem 2rem;
@@ -182,20 +185,20 @@ label {
 }
 
 .section-productos .subtitulo-producto {
-    color: var(--text-secondary);
+    color: #999999;
 }
 
 .titulo-productos {
     font-size: 1.5rem;
     font-weight: 800;
-    color: var(--secondary);
+    color: #111111;
     letter-spacing: -0.5px;
     text-transform: uppercase;
 }
 
 .input-buscar {
     padding: 0.6rem 1rem 0.6rem 2.2rem;
-    border: 1px solid var(--border);
+    border: 1px solid #e0e0e0;
     border-radius: 3px;
     font-size: 0.8rem;
     width: 240px;
@@ -204,7 +207,7 @@ label {
 }
 
 .input-buscar:focus {
-    border-color: var(--secondary);
+    border-color: #111111;
 }
 
 /* ================= TABLA DE PRODUCTOS ================= */
@@ -217,10 +220,10 @@ label {
 .tabla-productos th {
     font-size: 0.65rem;
     font-weight: 800;
-    color: var(--text-secondary);
+    color: #999999;
     letter-spacing: 0.8px;
     padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .text-right {
@@ -229,7 +232,7 @@ label {
 
 .tabla-productos td {
     padding: 1.2rem 0;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid #f6f6f6;
     vertical-align: middle;
     font-size: 0.8rem;
 }
@@ -245,7 +248,7 @@ label {
     height: 50px;
     object-fit: cover;
     border-radius: 2px;
-    background-color: var(--border);
+    background-color: #eaeaea;
 }
 
 .info-prod {
@@ -257,30 +260,30 @@ label {
 .nombre-prod {
     font-size: 0.95rem;
     font-weight: 800;
-    color: var(--secondary);
+    color: #111111;
     letter-spacing: -0.3px;
 }
 
 .sku-prod {
     font-size: 0.68rem;
-    color: var(--text-muted);
+    color: #aaaaaa;
     font-weight: 600;
 }
 
 .categoria-prod {
-    color: var(--text-secondary);
+    color: #555555;
     font-weight: 500;
 }
 
 .precio-prod {
     font-weight: 800;
-    color: var(--secondary);
+    color: #111111;
 }
 
 .estado-prod {
     font-weight: 800;
     font-size: 0.7rem;
-    color: var(--secondary);
+    color: #333333;
     letter-spacing: 0.5px;
 }
 
@@ -293,13 +296,13 @@ label {
 }
 
 .stock-ok {
-    background-color: rgba(0, 176, 80, .12);
-    color: var(--success);
+    background-color: #eef9f2;
+    color: #27ae60;
 }
 
 .stock-bajo {
-    background-color: rgba(255, 24, 1, .1);
-    color: var(--primary);
+    background-color: #fdf0f0;
+    color: #e74c3c;
 }
 
 .acciones {
@@ -309,8 +312,8 @@ label {
 .btn-accion {
     width: 32px;
     height: 32px;
-    background-color: var(--accent);
-    border: 1px solid var(--border);
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
     border-radius: 3px;
     cursor: pointer;
     font-size: 0.75rem;
@@ -319,24 +322,95 @@ label {
 }
 
 .btn-accion:hover {
-    border-color: var(--secondary);
-    background-color: var(--background);
+    border-color: #111111;
+    background-color: #fafafa;
 }
 
 .btn-eliminar:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-}
-/* ================= RESPONSIVE ================= */
-@media (max-width: 1199px) {
-    .columna-añadir { flex-direction: column; align-items: stretch; }
-    .añadir-producto { width: 100%; }
+    border-color: #e54d3b;
+    color: #e54d3b;
 }
 
-@media (max-width: 768px) {
+.vista-previa {
+    width: 100%;
+    max-height: 180px;
+    object-fit: contain;
+    background-color: #f4f3ef;
+    border-radius: 3px;
+}
+
+.mensaje-formulario {
+    min-height: 1rem;
+    color: #27834b;
+    font-size: 0.75rem;
+}
+
+.mensaje-error {
+    color: #c0392b;
+}
+
+.btn-cancelar {
+    width: 100%;
+    padding: 0.65rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    background: #fff;
+    color: #333;
+    cursor: pointer;
+}
+
+.estado-lista {
+    padding: 2rem 0;
+    color: #888;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 900px) {
+    .columna-añadir {
+        flex-direction: column;
+    }
+
+    .añadir-producto {
+        width: 100%;
+    }
+
+    .lista-productos {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .tabla-productos {
+        min-width: 720px;
+    }
+}
+
+@media (max-width: 600px) {
+    .contenedor-header,
+    main {
+        padding: 1.5rem 1rem;
+    }
+
     .principal,
-    .header-lista { flex-direction: column; align-items: flex-start; gap: 1rem; }
-    .titulo { font-size: 2rem; }
-    .lista-productos { padding: 1.25rem; overflow-x: auto; }
-    .input-buscar { width: 100%; }
+    .header-lista {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .titulo {
+        font-size: 2rem;
+    }
+
+    .input-buscar {
+        width: min(100%, 300px);
+    }
+
+    .lista-productos {
+        padding: 1.25rem 1rem;
+    }
 }

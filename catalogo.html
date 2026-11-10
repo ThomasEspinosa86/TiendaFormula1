@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catálogo | Zona DRS</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="catalogo.css" rel="stylesheet">
+</head>
+<body>
+
+  <main class="container-xl py-4">
+    <div class="row g-4">
+
+      <!--FILTROS  -->
+      <aside class="col-lg-3 col-xl-2">
+        <button class="btn btn-dark w-100 mb-3 d-lg-none" type="button"
+                data-bs-toggle="collapse" data-bs-target="#panelFiltros"
+                aria-expanded="false" aria-controls="panelFiltros">Mostrar / ocultar filtros</button>
+
+        <div class="collapse d-lg-block" id="panelFiltros">
+          <form id="formFiltros" class="card filtros-card" action="#" method="GET">
+            <div class="card-body">
+              <h2 class="filtros-titulo h6 text-uppercase mb-3">Filtros</h2>
+
+              <fieldset class="mb-3">
+                <legend class="filtros-grupo">Categoría</legend>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="categoria" value="camisetas" id="cat-camisetas">
+                <label class="form-check-label" for="cat-camisetas">Camisetas</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="categoria" value="gorras" id="cat-gorras">
+                <label class="form-check-label" for="cat-gorras">Gorras</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="categoria" value="chaquetas" id="cat-chaquetas">
+                <label class="form-check-label" for="cat-chaquetas">Chaquetas</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="categoria" value="coleccionables" id="cat-coleccionables">
+                <label class="form-check-label" for="cat-coleccionables">Coleccionables</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="categoria" value="accesorios" id="cat-accesorios">
+                <label class="form-check-label" for="cat-accesorios">Accesorios</label>
+              </div>
+              </fieldset>
+
+              <fieldset class="mb-3">
+                <legend class="filtros-grupo">Equipo</legend>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="equipo" value="ferrari" id="eq-ferrari">
+                <label class="form-check-label" for="eq-ferrari">Ferrari</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="equipo" value="red-bull-racing" id="eq-red-bull-racing">
+                <label class="form-check-label" for="eq-red-bull-racing">Red Bull Racing</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="equipo" value="mclaren" id="eq-mclaren">
+                <label class="form-check-label" for="eq-mclaren">McLaren</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="equipo" value="mercedes" id="eq-mercedes">
+                <label class="form-check-label" for="eq-mercedes">Mercedes</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="equipo" value="cadillac" id="eq-cadillac">
+                <label class="form-check-label" for="eq-cadillac">Cadillac</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="equipo" value="williams" id="eq-williams">
+                <label class="form-check-label" for="eq-williams">Williams</label>
+              </div>
+              </fieldset>
+
+              <fieldset class="mb-3">
+                <legend class="filtros-grupo">Rango de precio</legend>
+                <div class="row g-2">
+                  <div class="col-6">
+                    <label for="precioMin" class="form-label small mb-1">Mín</label>
+                    <input type="number" class="form-control form-control-sm" id="precioMin" name="min" min="0" placeholder="$ 0">
+                  </div>
+                  <div class="col-6">
+                    <label for="precioMax" class="form-label small mb-1">Máx</label>
+                    <input type="number" class="form-control form-control-sm" id="precioMax" name="max" min="0" placeholder="$ 500.000">
+                  </div>
+                </div>
+              </fieldset>
+
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-agregar">Aplicar filtros</button>
+                <button type="reset" class="btn btn-limpiar">Limpiar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </aside>
+
+      <!-- PRODUCTOS  -->
+      <section class="col-lg-9 col-xl-10">
+
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+          <p id="contador" class="mb-0 small text-secondary" aria-live="polite">Mostrando 8 de 10 productos</p>
+          <div class="d-flex align-items-center gap-2">
+            <label for="ordenar" class="visually-hidden">Ordenar por</label>
+            <select id="ordenar" class="form-select form-select-sm w-auto">
+              <option value="vendidos" selected>Ordenar por: Más vendidos</option>
+              <option value="menor">Ordenar por: Menor precio</option>
+              <option value="mayor">Ordenar por: Mayor precio</option>
+              <option value="nombre">Ordenar por: Nombre (A-Z)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Cada producto lleva sus datos en atributos data -->
+        <div id="listaProductos" class="row row-cols-2 row-cols-md-3 row-cols-xl-4 g-3">
+
+          <div class="col producto"
+               data-nombre="Mercedes AMG Gorra Oficial Kimi Antonelli 2026 - Blue" data-codigo="GOR-MER-001" data-categoria="gorras" data-equipo="mercedes"
+               data-precio="259900" data-stock="14" data-etiqueta="Nuevo" data-estado="activo" data-vendidos="95">
+            <article class="card producto-card h-100">
+              <div class="producto-img position-relative">
+                <span class="badge etiqueta position-absolute top-0 start-0 m-2">Nuevo</span>
+                <img src="img/gorra2.jpg" class="card-img-top" alt="Mercedes AMG Gorra Oficial Kimi Antonelli 2026 - Blue" loading="lazy">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <small class="producto-categoria text-uppercase">Gorras</small>
+                <h2 class="producto-nombre h6">Mercedes AMG Gorra Oficial Kimi Antonelli 2026 - Blue</h2>
+                <p class="producto-precio mb-3">$ 259.900</p>
+                <button type="button" class="btn btn-agregar mt-auto w-100">Agregar al carrito</button>
+              </div>
+            </article>
+          </div>
+
+          
+          <div class="col producto"
+               data-nombre="Red Bull Racing Gorra Edición Especial Brasil GP 2026" data-codigo="GOR-RBR-002" data-categoria="gorras" data-equipo="red-bull-racing"
+               data-precio="309900" data-stock="9" data-etiqueta="Edición especial" data-estado="activo" data-vendidos="88">
+            <article class="card producto-card h-100">
+              <div class="producto-img position-relative">
+                <span class="badge etiqueta position-absolute top-0 start-0 m-2">Edición especial</span>
+                <img src="img/gorra3.webp" class="card-img-top" alt="Red Bull Racing Gorra Edición Especial Brasil GP 2026" loading="lazy">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <small class="producto-categoria text-uppercase">Gorras</small>
+                <h2 class="producto-nombre h6">Red Bull Racing Gorra Edición Especial Brasil GP 2026</h2>
+                <p class="producto-precio mb-3">$ 309.900</p>
+                <button type="button" class="btn btn-agregar mt-auto w-100">Agregar al carrito</button>
+              </div>
+            </article>
+          </div>
+
+          
+          <div class="col producto"
+               data-nombre="Red Bull Racing Gorra Oficial Max Verstappen 2026" data-codigo="GOR-RBR-003" data-categoria="gorras" data-equipo="red-bull-racing"
+               data-precio="299900" data-stock="20" data-etiqueta="Bestseller" data-estado="activo" data-vendidos="120">
+            <article class="card producto-card h-100">
+              <div class="producto-img position-relative">
+                <span class="badge etiqueta position-absolute top-0 start-0 m-2">Bestseller</span>
+                <img src="img/gorra8.jpg" class="card-img-top" alt="Red Bull Racing Gorra Oficial Max Verstappen 2026" loading="lazy">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <small class="producto-categoria text-uppercase">Gorras</small>
+                <h2 class="producto-nombre h6">Red Bull Racing Gorra Oficial Max Verstappen 2026</h2>
+                <p class="producto-precio mb-3">$ 299.900</p>
+                <button type="button" class="btn btn-agregar mt-auto w-100">Agregar al carrito</button>
+              </div>
+            </article>
+          </div>
+
+         
+          <div class="col producto"
+               data-nombre="McLaren Gorra Edición Especial 1000th GP - Lando Norris" data-codigo="GOR-MCL-004" data-categoria="gorras" data-equipo="mclaren"
+               data-precio="259900" data-stock="12" data-etiqueta="Edición especial" data-estado="activo" data-vendidos="76">
+            <article class="card producto-card h-100">
+              <div class="producto-img position-relative">
+                <span class="badge etiqueta position-absolute top-0 start-0 m-2">Edición especial</span>
+                <img src="img/gorra7.webp" class="card-img-top" alt="McLaren Gorra Edición Especial 1000th GP - Lando Norris" loading="lazy">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <small class="producto-categoria text-uppercase">Gorras</small>
+                <h2 class="producto-nombre h6">McLaren Gorra Edición Especial 1000th GP - Lando Norris</h2>
+                <p class="producto-precio mb-3">$ 259.900</p>
+                <button type="button" class="btn btn-agregar mt-auto w-100">Agregar al carrito</button>
+              </div>
+            </article>
+          </div>
+
+         
+          <div class="col producto"
+               data-nombre="Cadillac F1® Gorra Oficial Checo Pérez 2026 - Black" data-codigo="GOR-CAD-005" data-categoria="gorras" data-equipo="cadillac"
+               data-precio="289900" data-stock="7" data-etiqueta="Bestseller" data-estado="activo" data-vendidos="110">
+            <article class="card producto-card h-100">
+              <div class="producto-img position-relative">
+                <span class="badge etiqueta position-absolute top-0 start-0 m-2">Bestseller</span>
+                <img src="img/gorra5.webp" class="card-img-top" alt="Cadillac F1® Gorra Oficial Checo Pérez 2026 - Black" loading="lazy">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <small class="producto-categoria text-uppercase">Gorras</small>
+                <h2 class="producto-nombre h6">Cadillac F1® Gorra Oficial Checo Pérez 2026 - Black</h2>
+                <p class="producto-precio mb-3">$ 289.900</p>
+                <button type="button" class="btn btn-agregar mt-auto w-100">Agregar al carrito</button>
+              </div>
+            </article>
+          </div>
+
+         
+          <div class="col producto"
+               data-nombre="Scuderia Ferrari Team Authentic Polo 2026" data-codigo="CAM-FER-006" data-categoria="camisetas" data-equipo="ferrari"
+               data-precio="479900" data-stock="5" data-etiqueta="Bestseller" data-estado="activo" data-vendidos="130">
+            <article class="card producto-card h-100">
+              <div class="producto-img position-relative">
+                <span class="badge etiqueta position-absolute top-0 start-0 m-2">Bestseller</span>
+                <img src="img/camisa1.jpg" class="card-img-top" alt="Scuderia Ferrari Team Authentic Polo 2026" loading="lazy">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <small class="producto-categoria text-uppercase">Camisetas</small>
+                <h2 class="producto-nombre h6">Scuderia Ferrari Team Authentic Polo 2026</h2>
+                <p class="producto-precio mb-3">$ 479.900</p>
+                <button type="button" class="btn btn-agregar mt-auto w-100">Agregar al carrito</button>
+              </div>
+            </article>
+  
+          <div class="col producto"
+               data-nombre="Cadillac F1® Polo Oficial Checo Pérez 2026" data-codigo="CAM-CAD-007" data-categoria="camisetas" data-equipo="cadillac"
+               data-precio="479900" data-stock="10" data-etiqueta="Nuevo" data-estado="activo" data-vendidos="70">
+            <article class="card producto-card h-100">
+              <div class="producto-img position-relative">
+                <span class="badge etiqueta position-absolute top-0 start-0 m-2">Nuevo</span>
+                <img src="img/camisa2.webp" class="card-img-top" alt="Cadillac F1® Polo Oficial Checo Pérez 2026" loading="lazy">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <small class="producto-categoria text-uppercase">Camisetas</small>
+                <h2 class="producto-nombre h6">Cadillac F1® Polo Oficial Checo Pérez 2026</h2>
+                <p class="producto-precio mb-3">$ 479.900</p>
+                <button type="button" class="btn btn-agregar mt-auto w-100">Agregar al carrito</button>
+              </div>
+            </article>
+          </div>
+
+          
+          <div class="col producto"
+               data-nombre="Cadillac F1® Camiseta Edición Especial Mexico GP 2026 Checo Pérez - Black" data-codigo="CAM-CAD-008" data-categoria="camisetas" data-equipo="cadillac"
+               data-precio="499900" data-stock="6" data-etiqueta="Nuevo" data-estado="activo" data-vendidos="64">
+            <article class="card producto-card h-100">
+              <div class="producto-img position-relative">
+                <span class="badge etiqueta position-absolute top-0 start-0 m-2">Nuevo</span>
+                <img src="img/nc1.webp" class="card-img-top" alt="Cadillac F1® Camiseta Edición Especial Mexico GP 2026 Checo Pérez - Black" loading="lazy">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <small class="producto-categoria text-uppercase">Camisetas</small>
+                <h2 class="producto-nombre h6">Cadillac F1® Camiseta Edición Especial Mexico GP 2026 Checo Pérez - Black</h2>
+                <p class="producto-precio mb-3">$ 499.900</p>
+                <button type="button" class="btn btn-agregar mt-auto w-100">Agregar al carrito</button>
+              </div>
+            </article>
+          </div>
+
+          
+          <div class="col producto"
+               data-nombre="Carlos Sainz Team Fifty5 Chilli Blue 9TWENTY" data-codigo="GOR-WIL-009" data-categoria="gorras" data-equipo="williams"
+               data-precio="209900" data-stock="18" data-etiqueta="Nuevo" data-estado="activo" data-vendidos="58">
+            <article class="card producto-card h-100">
+              <div class="producto-img position-relative">
+                <span class="badge etiqueta position-absolute top-0 start-0 m-2">Nuevo</span>
+                <img src="img/gorra6.jpg" class="card-img-top" alt="Carlos Sainz Team Fifty5 Chilli Blue 9TWENTY" loading="lazy">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <small class="producto-categoria text-uppercase">Gorras</small>
+                <h2 class="producto-nombre h6">Carlos Sainz Team Fifty5 Chilli Blue 9TWENTY</h2>
+                <p class="producto-precio mb-3">$ 209.900</p>
+                <button type="button" class="btn btn-agregar mt-auto w-100">Agregar al carrito</button>
+              </div>
+            </article>
+          </div>
+
+          
+          <div class="col producto"
+               data-nombre="Cadillac F1® Gorra Edición Especial Mexico GP 2026 - Checo Pérez" data-codigo="GOR-CAD-010" data-categoria="gorras" data-equipo="cadillac"
+               data-precio="289900" data-stock="11" data-etiqueta="Edición especial" data-estado="activo" data-vendidos="82">
+            <article class="card producto-card h-100">
+              <div class="producto-img position-relative">
+                <span class="badge etiqueta position-absolute top-0 start-0 m-2">Edición especial</span>
+                <img src="img/ng4.jpg" class="card-img-top" alt="Cadillac F1® Gorra Edición Especial Mexico GP 2026 - Checo Pérez" loading="lazy">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <small class="producto-categoria text-uppercase">Gorras</small>
+                <h2 class="producto-nombre h6">Cadillac F1® Gorra Edición Especial Mexico GP 2026 - Checo Pérez</h2>
+                <p class="producto-precio mb-3">$ 289.900</p>
+                <button type="button" class="btn btn-agregar mt-auto w-100">Agregar al carrito</button>
+              </div>
+            </article>
+          </div>
+
+        </div>
+
+        <p id="sinResultados" class="text-center text-secondary py-5 d-none">No hay productos que coincidan con los filtros.</p>
+
+        <nav aria-label="Paginación del catálogo" class="mt-4">
+          <ul id="paginacion" class="pagination justify-content-center mb-0"></ul>
+        </nav>
+
+      </section>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="catalogo.js"></script>
+</body>
+</html>

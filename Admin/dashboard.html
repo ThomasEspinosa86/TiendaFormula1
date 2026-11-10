@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zona DRS | Dashboard Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/admin.css" rel="stylesheet">
+  <link href="css/sidebar.css" rel="stylesheet">
+  <link href="css/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!--
+    Dato del tema chicos
+    Interruptor de tema (claro / oscuro) SOLO con CSS.
+    El checkbox está oculto; el <label for="tema"> de la barra superior lo marca/desmarca
+    y dashboard.css cambia las variables de color con body:has(#tema:checked).
+    Más adelante, si se quiere recordar la preferencia, se puede guardar con JS en localStorage.
+  -->
+  <input type="checkbox" id="tema" class="tema-check" aria-label="Activar modo oscuro">
+
+  <div class="dash">
+
+    <!--  BARRA LATERAL -->
+    <aside class="dash-sidebar">
+      <a href="dashboard.html" class="dash-logo">Zona <span>DRS</span></a>
+      <p class="dash-logo-sub">Panel de administración</p>
+
+      <nav class="dash-menu" aria-label="Menú de administración">
+        <a href="dashboard.html" class="activo">Dashboard</a>
+        <a href="pedidos.html">Pedidos</a>
+        <a href="products.html">Productos</a>
+        <a href="../index.html">Nosotros</a>
+      </nav>
+
+      <div class="dash-sidebar-pie">
+        <span class="avatar-mini">AD</span>
+        <div>
+          <strong>Admin</strong>
+          <small>admin@zonadrs.com</small>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTENIDO  -->
+    <main class="dash-main">
+
+      <!-- Barra superior -->
+      <header class="dash-top">
+        <div>
+          <p class="dash-kicker">Resumen general</p>
+          <h1 class="dash-title">Dashboard</h1>
+        </div>
+
+        <div class="dash-top-acciones">
+          <span class="dash-fecha">04 nov 2026</span>
+          <label for="tema" class="tema-toggle" title="Cambiar tema">
+            <span class="tema-claro">☀ Claro</span>
+            <span class="tema-oscuro">☾ Oscuro</span>
+          </label>
+        </div>
+      </header>
+
+      <!--Para cuando se haga el back: TARJETAS DE MÉTRICAS
+        Cuando exista el backend, cada número saldría de la API, por ejemplo:
+          GET /api/productos/count   -> total de productos
+          GET /api/pedidos/count     -> total de pedidos
+          GET /api/pedidos?estado=pendiente
+          GET /api/ventas/resumen?mes=actual
+        Con JS se haría un fetch() y se reemplazaría el texto de cada .kpi-valor (usando su id).
+      -->
+      <section class="kpis" aria-label="Métricas principales">
+        <article class="kpi kpi-rojo">
+          <p class="kpi-label">Productos</p>
+          <p class="kpi-valor" id="totalProductos">128</p>
+          <p class="kpi-nota"><span class="sube">+6</span> este mes</p>
+        </article>
+
+        <article class="kpi">
+          <p class="kpi-label">Pedidos</p>
+          <p class="kpi-valor" id="totalPedidos">342</p>
+          <p class="kpi-nota"><span class="sube">+12%</span> vs. mes anterior</p>
+        </article>
+
+        <article class="kpi">
+          <p class="kpi-label">Ventas del mes</p>
+          <p class="kpi-valor" id="ventasMes">$8,4M</p>
+          <p class="kpi-nota"><span class="sube">+8%</span> vs. mes anterior</p>
+        </article>
+
+        <article class="kpi">
+          <p class="kpi-label">Pendientes</p>
+          <p class="kpi-valor" id="pedidosPendientes">17</p>
+          <p class="kpi-nota"><span class="baja">5</span> con más de 3 días</p>
+        </article>
+      </section>
+
+      <div class="row g-4">
+
+        <!-- Ventas por semana (gráfico de barras hecho solo con CSS) -->
+        <section class="col-12 col-xl-8">
+          <div class="panel h-100">
+            <div class="panel-head">
+              <h2>Ventas por semana</h2>
+              <span class="panel-meta">Últimas 6 semanas</span>
+            </div>
+
+            <!--
+              La altura de cada barra se controla con la variable --v (0 a 100).
+              Más adelante JS podría calcular el % con los datos de /api/ventas/semanal
+              y asignarlo así: barra.style.setProperty('--v', porcentaje).
+            -->
+            <div class="barras" role="img" aria-label="Ventas semanales de las últimas 6 semanas">
+              <div class="barra" style="--v: 45"><span>$1,1M</span><small>S1</small></div>
+              <div class="barra" style="--v: 60"><span>$1,4M</span><small>S2</small></div>
+              <div class="barra" style="--v: 52"><span>$1,2M</span><small>S3</small></div>
+              <div class="barra" style="--v: 78"><span>$1,8M</span><small>S4</small></div>
+              <div class="barra" style="--v: 66"><span>$1,5M</span><small>S5</small></div>
+              <div class="barra barra-actual" style="--v: 92"><span>$2,1M</span><small>S6</small></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Estado de los pedidos -->
+        <section class="col-12 col-xl-4">
+          <div class="panel h-100">
+            <div class="panel-head">
+              <h2>Estado de pedidos</h2>
+              <span class="panel-meta">342 en total</span>
+            </div>
+
+            <!-- Misma idea: --v es el porcentaje que vendría de GET /api/pedidos/estados -->
+            <div class="estado-barra" role="img" aria-label="Distribución de pedidos por estado">
+              <span class="seg seg-entregado" style="--v: 72"></span>
+              <span class="seg seg-enviado" style="--v: 18"></span>
+              <span class="seg seg-pendiente" style="--v: 5"></span>
+              <span class="seg seg-cancelado" style="--v: 5"></span>
+            </div>
+
+            <ul class="estado-lista">
+              <li><i class="punto seg-entregado"></i> Entregado <strong>246</strong></li>
+              <li><i class="punto seg-enviado"></i> Enviado <strong>62</strong></li>
+              <li><i class="punto seg-pendiente"></i> Pendiente <strong>17</strong></li>
+              <li><i class="punto seg-cancelado"></i> Cancelado <strong>17</strong></li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Últimos pedidos -->
+        <section class="col-12 col-xl-8">
+          <div class="panel">
+            <div class="panel-head">
+              <h2>Últimos pedidos</h2>
+              <a href="pedidos.html" class="panel-link">Ver todos →</a>
+            </div>
+
+            <!--
+              Esta tabla se llenaría con GET /api/pedidos?limite=5&orden=reciente.
+              Con JS se recorrería la respuesta y se crearía un <tr> por cada pedido
+              (misma estructura de las filas de ejemplo).
+            -->
+            <div class="table-responsive">
+              <table class="table align-middle mb-0 tabla-dash">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Estado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1042</th>
+                    <td>Thomas</td>
+                    <td>Camiseta Red Bull Verstappen</td>
+                    <td>$30.000</td>
+                    <td><span class="badge text-bg-warning">Pendiente</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">1041</th>
+                    <td>Kevyn</td>
+                    <td>Gorra Ferrari Leclerc</td>
+                    <td>$85.000</td>
+                    <td><span class="badge text-bg-info">Enviado</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">1040</th>
+                    <td>Jesús</td>
+                    <td>Miniatura McLaren MCL38</td>
+                    <td>$120.000</td>
+                    <td><span class="badge text-bg-success">Entregado</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">1039</th>
+                    <td>Laura</td>
+                    <td>Chaqueta Mercedes AMG</td>
+                    <td>$210.000</td>
+                    <td><span class="badge text-bg-success">Entregado</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">1038</th>
+                    <td>Andrés</td>
+                    <td>Llavero casco Senna</td>
+                    <td>$25.000</td>
+                    <td><span class="badge text-bg-secondary">Cancelado</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Columna derecha: stock bajo + más vendidos -->
+        <section class="col-12 col-xl-4 d-flex flex-column gap-4">
+
+          <!-- Stock bajo: vendría de GET /api/productos?stock_menor_a=5 -->
+          <div class="panel">
+            <div class="panel-head">
+              <h2>Stock bajo <span class="badge text-bg-danger">3</span></h2>
+              <a href="products.html" class="panel-link">Ver productos →</a>
+            </div>
+            <ul class="lista-simple">
+              <li>Gorra Aston Martin Alonso <span class="stock stock-critico">2 und.</span></li>
+              <li>Camiseta Williams Sainz <span class="stock">4 und.</span></li>
+              <li>Taza escudería Ferrari <span class="stock">5 und.</span></li>
+            </ul>
+          </div>
+
+          <!-- Más vendidos: vendría de GET /api/productos/mas-vendidos?limite=3 -->
+          <div class="panel">
+            <div class="panel-head">
+              <h2>Más vendidos</h2>
+              <span class="panel-meta">Este mes</span>
+            </div>
+            <ol class="ranking">
+              <li><span class="pos">P1</span> Camiseta Red Bull Verstappen <strong>48</strong></li>
+              <li><span class="pos">P2</span> Gorra Ferrari Leclerc <strong>35</strong></li>
+              <li><span class="pos">P3</span> Gorra McLaren Norris <strong>29</strong></li>
+            </ol>
+          </div>
+
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+</body>
+
+</html>

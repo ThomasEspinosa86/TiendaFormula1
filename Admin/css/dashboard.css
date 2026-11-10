@@ -1,0 +1,236 @@
+/* Dashboard Admin - Zona DRS
+   Solo lo propio del dashboard (KPIs, gráficos, listas).
+   La paleta está en admin.css y la barra lateral / tema en sidebar.css. */
+
+/*  Tarjetas KPI  */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.kpi {
+  background-color: var(--d-panel);
+  border: 1px solid var(--d-borde);
+  border-top: 4px solid var(--d-texto);
+  padding: 1.1rem 1.25rem;
+  transition: background-color .25s, border-color .25s;
+}
+
+.kpi-rojo { border-top-color: var(--primary); }
+
+.kpi-label {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.kpi-valor {
+  margin: .15rem 0;
+  font-size: 2.5rem;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--d-texto);
+  line-height: 1.1;
+}
+
+.kpi-nota { margin: 0; font-size: .85rem; }
+.sube { color: var(--success); font-weight: 700; }
+.baja { color: var(--primary); font-weight: 700; }
+
+/*  Paneles  */
+.panel {
+  background-color: var(--d-panel);
+  border: 1px solid var(--d-borde);
+  padding: 1.25rem;
+  transition: background-color .25s, border-color .25s;
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.1rem;
+  padding-bottom: .6rem;
+  border-bottom: 2px solid var(--primary);
+}
+
+.panel-head h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--d-texto);
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+.panel-meta { font-size: .8rem; }
+
+.panel-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: .85rem;
+}
+
+.panel-link:hover { color: var(--d-texto); }
+
+/*  Gráfico de barras (solo CSS)  */
+.barras {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  height: 240px;
+  padding-top: 1.5rem;
+}
+
+.barra {
+  flex: 1;
+  height: calc(var(--v) * 1%);
+  background-color: var(--d-barra);
+  position: relative;
+  transition: background-color .2s;
+}
+
+.barra:hover,
+.barra-actual { background-color: var(--primary); }
+
+.barra span {
+  position: absolute;
+  top: -1.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--d-texto);
+  white-space: nowrap;
+}
+
+.barra small {
+  position: absolute;
+  bottom: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: .75rem;
+  font-weight: 700;
+}
+
+.panel:has(.barras) { padding-bottom: 2.5rem; }
+
+/*  Estado de pedidos  */
+.estado-barra {
+  display: flex;
+  height: 18px;
+  gap: 3px;
+  margin-bottom: 1.25rem;
+}
+
+.seg { width: calc(var(--v) * 1%); }
+
+.seg-entregado { background-color: var(--success); }
+.seg-enviado { background-color: var(--info); }
+.seg-pendiente { background-color: var(--warning); }
+.seg-cancelado { background-color: var(--text-muted); }
+
+.estado-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.estado-lista li {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .55rem 0;
+  border-bottom: 1px solid var(--d-borde);
+}
+
+.estado-lista li:last-child { border-bottom: 0; }
+.estado-lista strong { margin-left: auto; color: var(--d-texto); }
+
+.punto {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+
+/*  Tabla  */
+.tabla-dash {
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--d-texto-2);
+  --bs-table-border-color: var(--d-borde);
+}
+
+.tabla-dash thead th {
+  text-transform: uppercase;
+  font-size: .75rem;
+  letter-spacing: 1px;
+  color: var(--d-texto);
+  border-bottom: 2px solid var(--d-texto);
+}
+
+.tabla-dash tbody th { color: var(--d-texto); }
+.tabla-dash tbody tr:hover > * { background-color: rgba(255, 24, 1, .06); }
+
+/*  Listas laterales  */
+.lista-simple,
+.ranking {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lista-simple li,
+.ranking li {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .55rem 0;
+  border-bottom: 1px solid var(--d-borde);
+  color: var(--d-texto);
+}
+
+.lista-simple li:last-child,
+.ranking li:last-child { border-bottom: 0; }
+
+.stock {
+  margin-left: auto;
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--warning);
+  white-space: nowrap;
+}
+
+.stock-critico { color: var(--primary); }
+
+.ranking strong { margin-left: auto; }
+
+.pos {
+  background-color: var(--d-texto);
+  color: var(--d-panel);
+  font-weight: 900;
+  font-style: italic;
+  font-size: .75rem;
+  padding: .1rem .4rem;
+}
+
+.ranking li:first-child .pos {
+  background-color: var(--primary);
+  color: #FFFFFF;
+}
+
+/*  Responsive  */
+@media (max-width: 1199px) {
+  .kpis { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .barras { gap: .5rem; height: 200px; }
+}
+
+@media (max-width: 480px) {
+  .kpis { grid-template-columns: 1fr; }
+}

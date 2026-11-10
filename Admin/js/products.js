@@ -181,6 +181,7 @@ formulario.addEventListener('submit', async (evento) => {
             nombre: datos.get('nombre').trim(),
             codigo,
             categoria: datos.get('categoria').trim(),
+            equipo: datos.get('equipo'),
             precio: Number(datos.get('precio')),
             stock: Number(datos.get('stock')),
             etiqueta: datos.get('etiqueta').trim(),
@@ -249,7 +250,15 @@ listaProductos.addEventListener('click', (evento) => {
     productoEditando = producto;
     formulario.elements.nombre.value = producto.nombre;
     formulario.elements.codigo.value = producto.codigo;
-    formulario.elements.categoria.value = producto.categoria;
+    const selectorCategoria = formulario.elements.categoria;
+    if (!Array.from(selectorCategoria.options).some((opcion) => opcion.value === producto.categoria)) {
+        const opcion = document.createElement('option');
+        opcion.value = producto.categoria;
+        opcion.textContent = producto.categoria;
+        selectorCategoria.append(opcion);
+    }
+    selectorCategoria.value = producto.categoria;
+    formulario.elements.equipo.value = producto.equipo || '';
     formulario.elements.precio.value = producto.precio;
     formulario.elements.stock.value = producto.stock;
     formulario.elements.etiqueta.value = producto.etiqueta;

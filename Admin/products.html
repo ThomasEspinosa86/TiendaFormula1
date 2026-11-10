@@ -24,6 +24,7 @@
             <a href="pedidos.html">Pedidos</a>
             <a href="products.html" class="activo">Productos</a>
             <a href="../nosotros.html">Nosotros</a>
+            <a href="../catalogo.html">Catalogo</a>
         </nav>
 
         <div class="dash-sidebar-pie">
@@ -66,7 +67,27 @@
 
                     <div class="nombre">
                         <label for="categoria">CATEGORIA</label>
-                        <input type="text" class="formulario" id="categoria" name="categoria" placeholder="Ej. Edición Colombia" required>
+                        <select class="formulario" id="categoria" name="categoria" required>
+                            <option value="" disabled selected>Selecciona una categoría</option>
+                            <option value="camisetas">Camisetas</option>
+                            <option value="gorras">Gorras</option>
+                            <option value="chaquetas">Chaquetas</option>
+                            <option value="coleccionables">Coleccionables</option>
+                            <option value="accesorios">Accesorios</option>
+                        </select>
+                    </div>
+
+                    <div class="nombre">
+                        <label for="equipo">EQUIPO</label>
+                        <select class="formulario" id="equipo" name="equipo" required>
+                            <option value="" disabled selected>Selecciona un equipo</option>
+                            <option value="ferrari">Ferrari</option>
+                            <option value="red-bull-racing">Red Bull Racing</option>
+                            <option value="mclaren">McLaren</option>
+                            <option value="mercedes">Mercedes</option>
+                            <option value="cadillac">Cadillac</option>
+                            <option value="williams">Williams</option>
+                        </select>
                     </div>
 
                     <div class="nombre campos-numericos">
@@ -85,8 +106,8 @@
                     <div class="nombre">
                         <label for="estado">ESTADO</label>
                         <select class="formulario" id="estado" name="estado">
-                            <option value="Activo">Activo</option>
-                            <option value="Inactivo">Inactivo</option>
+                            <option value="activo">Activo</option>
+                            <option value="inactivo">Inactivo</option>
                         </select>
                     </div>
 

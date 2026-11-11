@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000000;
+    padding: 0 1rem;
+    color: white;
+    font-family: 'Titillium Web', sans-serif;
+    font-style: italic;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.navbar-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links li{
+    border-right: 1px solid #e10600
+}
+
+.navbar-links a{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color:#ffffff;
+    text-decoration: none;
+    padding: 12px 20px;
+    display: block;
+}
+
+.navbar-links a:hover{
+    color: #e10600
+}
+
+/* parte del full-top */
+
+.full-top{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#e10600;
+    color:#ffffff;
+    font-family: 'Titillium Web', sans-serif;
+    font-style: italic;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 0;        
+    font-size: 0.85rem;
+}
+
+.full-top a{
+    text-decoration: none;
+    color: white;
+}
+
+/* parte de iconos y estilos para qeu qeude conforme ala 
+pagina web y sus ajustes */
+
+.nav-icon{
+    width: 18px;
+    height:18px;
+    filter: invert(1);
+}
+
+.cart-count{
+    color: #e10600;
+    font-size: 1.1rem
+}
+
+/* Se activa solo en pantallas de 768px o menos (Celulares y Tablets) */
+@media (max-width: 768px) {
+
+    /* 1. Cambiamos las dos listas de horizontal a vertical */
+    .navbar {
+        flex-direction: column; /* Apila la primera lista arriba y la segunda abajo */
+        gap: 10px;               /* Espacio entre la lista de enlaces y la de inicio de sesión */
+        padding: 10px 0;
+    }
+
+    /* 2. Ajustamos los enlaces */
+    .navbar-links {
+        justify-content: center; 
+        flex-wrap: wrap;        
+    }
+
+    .navbar-links a {
+        padding: 8px 10px;       
+        font-size: 0.85rem;      
+    }
+
+    .full-top {
+        font-size: 0.75rem;     
+    }
+}

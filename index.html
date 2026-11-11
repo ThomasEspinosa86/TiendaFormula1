@@ -3,212 +3,303 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Zona DRS | Sobre nosotros</title>
+  <title>Zona DRS | Tienda oficial de F1</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,800;1,900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="cssH/homestyles.css" rel="stylesheet">
 </head>
 <body>
 
-  <header class="bg-hero py-5">
-    <div class="container text-center py-4">
-      <h1 class="display-3">Zona <span class="texto-rojo">DRS</span></h1>
-      <hr class="linea-roja mx-auto border-0" style="height:4px; width:80px;">
-      <p class="lead mb-0">Tu tienda de Fórmula 1: pasión por la velocidad, en cada detalle.</p>
+  <section id="inicio">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <article class="carousel-item hero-slide active">
+          <div class="container hero-content">
+            <h1 class="display-title">Descuentos</h1>
+            <p class="hero-text">Hasta 50% dcto en referencias seleccionadas de temporadas anteriores</p>
+            <button class="btn btn-light btn-hero">Ver ofertas</button>
+          </div>
+          <img class="hero-img" src="img/hyc.webp" alt="Foto del banner">
+        </article>
+        <article class="carousel-item hero-slide hero-slide-2">
+          <div class="container hero-content">
+            <h1 class="display-title">Zona DRS 2026</h1>
+            <p class="hero-text">Abra el DRS y llegue primero a la colección oficial de todas las escuderías</p>
+            <button class="btn btn-light btn-hero">Ver colección</button>
+          </div>
+          <img class="hero-img" src="img/chaqueta aston.jpeg" alt="Foto del banner">
+        </article>
+        <article class="carousel-item hero-slide hero-slide-3">
+          <div class="container hero-content">
+            <h1 class="display-title">Ediciones especiales</h1>
+            <p class="hero-text">Gorras de Gran Premio con números
+				limitados</p>
+            <button class="btn btn-light btn-hero">Comprar ahora</button>
+          </div>
+          <img class="hero-img" src="img/banner mexico.jpg" alt="Foto del banner">
+        </article>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span class="visually-hidden">Anterior</span></button>
+      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span><span class="visually-hidden">Siguiente</span></button>
     </div>
-  </header>
+  </section>
 
   <main>
-    <!-- SECCIÓN: SOBRE NOSOTROS -->
-    <section class="py-5">
-      <div class="container">
-        <h2 class="text-center mb-4">Sobre <span class="texto-rojo">nosotros</span></h2>
-        <div class="row justify-content-center">
-          <div class="col-lg-8 text-center">
-            <p class="fs-5">
-              Zona DRS nace del amor por la Fórmula 1. Somos un equipo de estudiantes que creó una tienda en línea
-              para que los fanáticos encuentren en un solo lugar camisetas, gorras, accesorios y coleccionables
-              de sus equipos y pilotos favoritos.
-            </p>
-            <p>
-              Como el DRS en pista, buscamos darte ese empujón extra: una experiencia de compra rápida,
-              clara y fácil de usar, con productos pensados para quienes viven cada carrera.
-            </p>
-          </div>
-        </div>
 
-        <div class="row g-4 mt-3">
-          <div class="col-md-4">
-            <div class="card h-100 text-center shadow-sm">
-              <div class="card-body">
-                <h3 class="h4">Misión</h3>
-                <p class="card-text">Ofrecer productos de Fórmula 1 de calidad con una experiencia de compra sencilla y confiable.</p>
-              </div>
-            </div>
+    <section id="mas-vendidos" class="section section-white">
+      <div class="container">
+        <h2 class="section-title">Más vendidos</h2>
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
+          <div class="col">
+            <article class="product-card">
+              <figure class="product-img"><span class="year-tag">2026</span><img src="img/gorra1.jpg" alt="Pirelli Podium Cap - Special Edition Brasil GP 2026"></figure>
+              <h3 class="product-name">Pirelli Podium Cap - Special Edition Brasil GP 2026</h3>
+              <p class="product-meta">Nuevo</p>
+              <p class="product-price">$329.900</p>
+              <button class="btn btn-f1">Comprar</button>
+            </article>
           </div>
-          <div class="col-md-4">
-            <div class="card h-100 text-center shadow-sm">
-              <div class="card-body">
-                <h3 class="h4">Visión</h3>
-                <p class="card-text">Ser la tienda de referencia para la comunidad de fanáticos de la F1 en Latinoamérica.</p>
-              </div>
-            </div>
+          <div class="col">
+            <article class="product-card">
+              <figure class="product-img"><span class="year-tag">2026</span><img src="img/gorra2.jpg" alt="Mercedes AMG Gorra Oficial Kimi Antonelli 2026 - Blue"></figure>
+              <h3 class="product-name">Mercedes AMG Gorra Oficial Kimi Antonelli 2026 - Blue</h3>
+              <p class="product-meta">Nuevo</p>
+              <p class="product-price">$259.900</p>
+              <button class="btn btn-f1">Comprar</button>
+            </article>
           </div>
-          <div class="col-md-4">
-            <div class="card h-100 text-center shadow-sm">
-              <div class="card-body">
-                <h3 class="h4">Valores</h3>
-                <p class="card-text">Pasión, trabajo en equipo, compromiso y mejora continua en cada vuelta.</p>
-              </div>
-            </div>
+          <div class="col">
+            <article class="product-card">
+              <figure class="product-img"><span class="year-tag">2026</span><img src="img/gorra3.webp" alt="Red Bull Racing Gorra Edición Especial Brasil GP 2026"></figure>
+              <h3 class="product-name">Red Bull Racing Gorra Edición Especial Brasil GP 2026</h3>
+              <p class="product-meta">Nuevo</p>
+              <p class="product-price">$309.900</p>
+              <button class="btn btn-f1">Comprar</button>
+            </article>
+          </div>
+          <div class="col">
+            <article class="product-card">
+              <figure class="product-img"><span class="year-tag">2026</span><img src="img/gorra4.webp" alt="Pirelli Podium Cap - Special Edition Japan GP 2026"></figure>
+              <h3 class="product-name">Pirelli Podium Cap - Special Edition Japan GP 2026</h3>
+              <p class="product-meta">Nuevo</p>
+              <p class="product-price">$329.900</p>
+              <button class="btn btn-f1">Comprar</button>
+            </article>
+          </div>
+          <div class="col">
+            <article class="product-card">
+              <figure class="product-img"><span class="year-tag">2026</span><img src="img/gorra5.webp" alt="Cadillac F1® Gorra Oficial Checo Pérez 2026 - Black"></figure>
+              <h3 class="product-name">Cadillac F1® Gorra Oficial Checo Pérez 2026 - Black</h3>
+              <p class="product-meta"><span class="stars">★★★★★</span> 5.0 (1)</p>
+              <p class="product-price">$289.900</p>
+              <button class="btn btn-f1">Comprar</button>
+            </article>
+          </div>
+          <div class="col">
+            <article class="product-card">
+              <figure class="product-img"><span class="year-tag">2026</span><img src="img/gorra6.jpg" alt="Carlos Sainz Team Fifty5 Chilli Blue 9TWENTY"></figure>
+              <h3 class="product-name">Carlos Sainz Team Fifty5 Chilli Blue 9TWENTY</h3>
+              <p class="product-meta">Nuevo</p>
+              <p class="product-price">$209.900</p>
+              <button class="btn btn-f1">Comprar</button>
+            </article>
+          </div>
+          <div class="col">
+            <article class="product-card">
+              <figure class="product-img"><span class="year-tag">2026</span><img src="img/gorra7.webp" alt="McLaren Gorra Edición Especial 1000th GP - Lando Norris"></figure>
+              <h3 class="product-name">McLaren Gorra Edición Especial 1000th GP - Lando Norris</h3>
+              <p class="product-meta">Nuevo</p>
+              <p class="product-price">$259.900</p>
+              <button class="btn btn-f1">Comprar</button>
+            </article>
+          </div>
+          <div class="col">
+            <article class="product-card">
+              <figure class="product-img"><span class="year-tag">2026</span><img src="img/camisa1.jpg" alt="Scuderia Ferrari Team Authentic Polo 2026"></figure>
+              <h3 class="product-name">Scuderia Ferrari Team Authentic Polo 2026</h3>
+              <p class="product-meta"><span class="stars">★★★★★</span> 5.0 (1)</p>
+              <p class="product-price">$479.900</p>
+              <button class="btn btn-f1">Comprar</button>
+            </article>
+          </div>
+          <div class="col">
+            <article class="product-card">
+              <figure class="product-img"><span class="year-tag">2026</span><img src="img/camisa2.webp" alt="Cadillac F1® Polo Oficial Checo Pérez 2026"></figure>
+              <h3 class="product-name">Cadillac F1® Polo Oficial Checo Pérez 2026</h3>
+              <p class="product-meta">Nuevo</p>
+              <p class="product-price">$479.900</p>
+              <button class="btn btn-f1">Comprar</button>
+            </article>
+          </div>
+          <div class="col">
+            <article class="product-card">
+              <figure class="product-img"><span class="year-tag">2026</span><img src="img/gorra8.jpg" alt="Red Bull Racing Gorra Oficial Max Verstappen 2026"></figure>
+              <h3 class="product-name">Red Bull Racing Gorra Oficial Max Verstappen 2026</h3>
+              <p class="product-meta"><span class="stars">★★★★★</span> 5.0 (5)</p>
+              <p class="product-price">$299.900</p>
+              <button class="btn btn-f1">Comprar</button>
+            </article>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECCIÓN: NUESTRO EQUIPO -->
-    <section class="py-5 bg-light">
+    <!-- ============ 3. CAMPEÓN 2026 ============ -->
+    <section id="campeon" class="champion">
+      <div class="row g-0">
+        <figure class="col-lg-6 champion-photo">
+          <!-- Reemplace el src por la foto real de Kimi -->
+          <img src="img/kimi.webp" alt="Kimi Antonelli, campeón del mundo 2026">
+        </figure>
+        <article class="col-lg-6 champion-text">
+          <p class="champion-badge">Campeón del mundo 2026</p>
+          <h2 class="display-title">Kimi Antonelli</h2>
+          <p class="lead-text">Disfrute los productos del nuevo campeón del mundo 2026.</p>
+          <p class="champion-desc">De las categorías menores a lo más alto de la Fórmula 1 con Mercedes. Gorras, camisetas y ediciones especiales para celebrar una temporada histórica y llevar el título a casa.</p>
+          <button class="btn btn-f1-solid btn-lg">Comprar ahora</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ 4. NUEVOS PRODUCTOS ============ -->
+    <section id="nuevos" class="section section-dark">
       <div class="container">
-        <h2 class="text-center mb-5">Nuestro <span class="texto-rojo">equipo</span></h2>
-
-        <div class="row g-4 justify-content-center">
-
-          <div class="col-sm-6 col-lg-3">
-            <div class="card h-100 text-center shadow-sm">
-              <div class="card-body">
-                <img src="https://github.com/ThomasEspinosa86.png" alt="Thomas Espinosa"
-                     class="avatar rounded-circle mb-3 img-fluid" width="140" height="140"
-                     onerror="this.onerror=null;this.src='https://github.com/identicons/ThomasEspinosa86.png';">
-                <h3 class="h5 mb-2">Thomas Espinosa</h3>
-                <span class="badge badge-rol mb-2">Product Owner</span>
-                <p class="card-text small">Define la visión del producto y prioriza el trabajo.</p>
-                <a class="link-github small text-decoration-none" href="https://github.com/ThomasEspinosa86" target="_blank" rel="noopener">@ThomasEspinosa86</a>
-              </div>
+        <h2 class="section-title">Nuevos productos</h2>
+        <p class="section-sub">Recién llegados a la Zona DRS</p>
+        <div class="new-grid">
+          <article class="new-card featured">
+            <figure class="new-img"><span class="year-tag">2026</span><img src="img/ng1.jpg" alt="Pirelli Podium Cap - Special Edition Brasil GP 2026"></figure>
+            <div class="new-body">
+              <span class="new-flag">Lo más nuevo</span>
+              <h3 class="new-name">Pirelli Podium Cap - Special Edition Brasil GP 2026</h3>
+              <p class="new-price">$329.900</p>
+              <button class="btn btn-f1-dark">Comprar</button>
             </div>
-          </div>
-
-          <div class="col-sm-6 col-lg-3">
-            <div class="card h-100 text-center shadow-sm">
-              <div class="card-body">
-                <img src="https://github.com/Cristiannet.png" alt="Cristian Bernal"
-                     class="avatar rounded-circle mb-3 img-fluid" width="140" height="140"
-                     onerror="this.onerror=null;this.src='https://github.com/identicons/Cristiannet.png';">
-                <h3 class="h5 mb-2">Cristian Bernal</h3>
-                <span class="badge badge-rol mb-2">Desarrollador Frontend</span>
-                <p class="card-text small">Construye las páginas con HTML, Bootstrap y JavaScript.</p>
-                <a class="link-github small text-decoration-none" href="https://github.com/Cristiannet" target="_blank" rel="noopener">@Cristiannet</a>
-              </div>
+          </article>
+          <article class="new-card">
+            <figure class="new-img"><span class="year-tag">2026</span><img src="img/ng2.webp" alt="Red Bull Racing Gorra Edición Especial Brasil GP 2026 - Max Verstappen"></figure>
+            <div class="new-body">
+              <h3 class="new-name">Red Bull Racing Gorra Edición Especial Brasil GP 2026 - Max Verstappen</h3>
+              <p class="new-price">$309.900</p>
+              <button class="btn btn-f1-dark">Comprar</button>
             </div>
-          </div>
-
-          <div class="col-sm-6 col-lg-3">
-            <div class="card h-100 text-center shadow-sm">
-              <div class="card-body">
-                <img src="https://github.com/JLopezAhumada.png" alt="JLopezAhumada"
-                     class="avatar rounded-circle mb-3 img-fluid" width="140" height="140"
-                     onerror="this.onerror=null;this.src='https://github.com/identicons/JLopezAhumada.png';">
-                <h3 class="h5 mb-2">JLopezAhumada</h3>
-                <span class="badge badge-rol mb-2">Scrum Master</span>
-                <p class="card-text small">Facilita las reuniones y mantiene al equipo en ritmo.</p>
-                <a class="link-github small text-decoration-none" href="https://github.com/JLopezAhumada" target="_blank" rel="noopener">@JLopezAhumada</a>
-              </div>
+          </article>
+          <article class="new-card">
+            <figure class="new-img"><span class="year-tag">2026</span><img src="img/ng3.webp" alt="Red Bull Racing Gorra Edición Especial Brasil GP 2026"></figure>
+            <div class="new-body">
+              <h3 class="new-name">Red Bull Racing Gorra Edición Especial Brasil GP 2026</h3>
+              <p class="new-price">$309.900</p>
+              <button class="btn btn-f1-dark">Comprar</button>
             </div>
-          </div>
-
-          <div class="col-sm-6 col-lg-3">
-            <div class="card h-100 text-center shadow-sm">
-              <div class="card-body">
-                <img src="https://github.com/CodeByKevyn.png" alt="CodeByKevyn"
-                     class="avatar rounded-circle mb-3 img-fluid" width="140" height="140"
-                     onerror="this.onerror=null;this.src='https://github.com/identicons/CodeByKevyn.png';">
-                <h3 class="h5 mb-2">CodeByKevyn</h3>
-                <span class="badge badge-rol mb-2">Diseñador UX/UI</span>
-                <p class="card-text small">Cuida la experiencia Backend, los colores y la usabilidad.</p>
-                <a class="link-github small text-decoration-none" href="https://github.com/CodeByKevyn" target="_blank" rel="noopener">@CodeByKevyn</a>
-              </div>
+          </article>
+          <article class="new-card">
+            <figure class="new-img"><span class="year-tag">2026</span><img src="img/ng4.jpg" alt="Cadillac F1® Gorra Edición Especial Mexico GP 2026 - Checo Pérez"></figure>
+            <div class="new-body">
+              <h3 class="new-name">Cadillac F1® Gorra Edición Especial Mexico GP 2026 - Checo Pérez</h3>
+              <p class="new-price">$289.900</p>
+              <button class="btn btn-f1-dark">Comprar</button>
             </div>
-          </div>
-
-          <div class="col-sm-6 col-lg-3">
-            <div class="card h-100 text-center shadow-sm">
-              <div class="card-body">
-                <img src="https://github.com/vbucurumalambo-glitch.png" alt="Valentina Bucurú Malambo"
-     class="avatar rounded-circle mb-3 img-fluid" width="140" height="140"
-     onerror="this.onerror=null;this.src='https://github.com/identicons/vbucurumalambo-glitch.png';">
-                <h3 class="h5 mb-2">Valentina Bucurú Malambo</h3>
-                <span class="badge badge-rol mb-2">Diseñadora UX/UI</span>
-                <p class="card-text small">Cuida la experiencia, los colores y la usabilidad.</p>
-<a class="link-github small text-decoration-none" href="https://github.com/vbucurumalambo-glitch" target="_blank" rel="noopener">@vbucurumalambo-glitch</a>              </div>
+          </article>
+          <article class="new-card">
+            <figure class="new-img"><span class="year-tag">2026</span><img src="img/nc1.webp" alt="Cadillac F1® Camiseta Edición Especial Mexico GP 2026 Checo Pérez - Black"></figure>
+            <div class="new-body">
+              <h3 class="new-name">Cadillac F1® Camiseta Edición Especial Mexico GP 2026 Checo Pérez - Black</h3>
+              <p class="new-price">$499.900</p>
+              <button class="btn btn-f1-dark">Comprar</button>
             </div>
-          </div>
-
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- SECCIÓN UNIFICADA: CONTACTO (BOOTSTRAP + FORMSPREE) -->
-    <section class="py-5" id="contacto">
+    <section id="clientes" class="section section-white">
       <div class="container">
-        <h2 class="text-center mb-2">Escríbenos <span class="texto-rojo">a la pista</span></h2>
-        <hr class="linea-roja mx-auto border-0 mb-4" style="height:4px; width:80px;">
-        <p class="text-center mb-5">¿Tienes preguntas o sugerencias? Escríbenos y te responderemos pronto.</p>
-
-        <div class="row justify-content-center">
-          <div class="col-md-10 col-lg-7">
-            <div class="card shadow-sm">
-              <div class="card-body p-4">
-
-                <form id="form-contacto" action="https://formspree.io/f/mwlllwya" method="POST">
-
-                  <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre"
-                           placeholder="Tu nombre completo" minlength="3" maxlength="60" required>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="email" class="form-label">Correo electrónico</label>
-                    <input type="email" class="form-control" id="email" name="email"
-                           placeholder="tucorreo@ejemplo.com" required>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="telefono" class="form-label">Teléfono</label>
-                    <input type="tel" class="form-control" id="telefono" name="telefono"
-                           placeholder="3001234567" pattern="[0-9+\s]{7,15}">
-                  </div>
-
-                  <div class="mb-4">
-                    <label for="mensaje" class="form-label">Mensaje</label>
-                    <textarea class="form-control" id="mensaje" name="message" rows="5"
-                              placeholder="Escribe tu mensaje aquí..." minlength="10" maxlength="500" required></textarea>
-                  </div>
-
-                  <!-- Campos ocultos de Formspree -->
-                  <input type="hidden" name="_subject" value="Nuevo mensaje desde Zona DRS">
-                  <input type="text" name="_gotcha" class="d-none" tabindex="-1" autocomplete="off">
-
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-drs w-100 py-2 fw-bold">Enviar mensaje</button>
-                  </div>
-
-                  <!-- Mensaje de confirmación en pantalla -->
-                  <output id="respuesta-form" class="d-block mt-3"></output>
-
-                </form>
-
-              </div>
-            </div>
+        <h2 class="section-title">Nuestros clientes</h2>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <article class="review-card">
+              <h3>Mercedes AMG Gorra Oficial Kimi Antonelli 2026</h3>
+              <p>Llegó en dos días a Medellín y es idéntica a la de la foto. La costura y el bordado se ven de muy buena calidad.</p>
+              <p class="stars" aria-label="5 de 5 estrellas">★★★★★</p>
+              <p class="review-author">Camila Ortiz</p>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="review-card">
+              <h3>Scuderia Ferrari Team Authentic Polo 2026</h3>
+              <p>Venía en su caja original y con todos los sellos. Me resolvieron una duda de talla por WhatsApp en minutos.</p>
+              <p class="stars" aria-label="5 de 5 estrellas">★★★★★</p>
+              <p class="review-author">Santiago Rueda</p>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="review-card">
+              <h3>Red Bull Racing Gorra Edición Especial Brasil GP 2026</h3>
+              <p>Se la regalé a mi papá y no se la quita. Muy buen empaque y el precio me pareció justo.</p>
+              <p class="stars" aria-label="5 de 5 estrellas">★★★★★</p>
+              <p class="review-author">Valentina Pardo</p>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="review-card">
+              <h3>McLaren Gorra Edición Especial 1000th GP</h3>
+              <p>Excelente producto. Me habría gustado recibir la guía de envío desde el primer día, pero llegó en perfecto estado.</p>
+              <p class="stars" aria-label="4 de 5 estrellas">★★★★☆</p>
+              <p class="review-author">Julián Mosquera</p>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="review-card">
+              <h3>Cadillac F1® Polo Oficial Checo Pérez 2026</h3>
+              <p>La tela es suave y la talla es la indicada. Ya es mi segunda compra en Zona DRS.</p>
+              <p class="stars" aria-label="5 de 5 estrellas">★★★★★</p>
+              <p class="review-author">Daniela Cifuentes</p>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="review-card">
+              <h3>Pirelli Podium Cap - Special Edition Japan GP 2026</h3>
+              <p>Pieza de colección. Llegó bien protegida y sin ningún daño. Totalmente recomendados.</p>
+              <p class="stars" aria-label="5 de 5 estrellas">★★★★★</p>
+              <p class="review-author">Andrés Felipe Mora</p>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="review-card">
+              <h3>Carlos Sainz Team Fifty5 Chilli Blue 9TWENTY</h3>
+              <p>El azul es hermoso y ajusta perfecto. La atención al cliente fue muy amable.</p>
+              <p class="stars" aria-label="4 de 5 estrellas">★★★★☆</p>
+              <p class="review-author">Laura Sofía Beltrán</p>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="review-card">
+              <h3>Cadillac F1® Camiseta Edición Especial Mexico GP 2026</h3>
+              <p>Original y bien terminada. El pago fue sencillo y el pedido llegó antes de la carrera.</p>
+              <p class="stars" aria-label="5 de 5 estrellas">★★★★★</p>
+              <p class="review-author">Sebastián Arévalo</p>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="review-card">
+              <h3>Ayrton Senna Legacy Cap</h3>
+              <p>Me encantó el detalle del empaque. Zona DRS se ganó un cliente fijo.</p>
+              <p class="stars" aria-label="5 de 5 estrellas">★★★★★</p>
+              <p class="review-author">Paula Andrea Gil</p>
+            </article>
           </div>
         </div>
       </div>
     </section>
+
   </main>
 
-  <footer>
-    <!-- Tu contenido de pie de página -->
-  </footer>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="./app.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

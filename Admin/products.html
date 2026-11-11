@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet" href="./css/sidebar.css">
+    <link rel="stylesheet" href="./css/products.css">
+    <script src="./js/products.js" defer></script>
+    <title>Productos - Zona DRS</title>
+</head>
+
+<body>
+    <div class="dash">
+
+    <!--  BARRA LATERAL (la misma en todas las páginas del admin) -->
+    <aside class="dash-sidebar">
+        <a href="dashboard.html" class="dash-logo">Zona <span>DRS</span></a>
+        <p class="dash-logo-sub">Panel de administración</p>
+
+        <nav class="dash-menu" aria-label="Menú de administración">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="pedidos.html">Pedidos</a>
+            <a href="products.html" class="activo">Productos</a>
+            <a href="../nosotros.html">Nosotros</a>
+            <a href="../catalogo.html">Catalogo</a>
+        </nav>
+
+        <div class="dash-sidebar-pie">
+            <span class="avatar-mini">AD</span>
+            <div>
+                <strong>Admin</strong>
+                <small>admin@zonadrs.com</small>
+            </div>
+        </div>
+    </aside>
+
+    <main class="dash-main">
+    <header class="contenedor-header">
+        <section class="principal">
+            <div class="header-info">
+                <span class="subtitulo">CATALOGO / CRUD</span>
+                <h1 class="titulo">GESTION DE PRODUCTOS - ZONA DRS</h1>
+            </div>
+            <div class="header-contador">
+                <span id="contador-productos">0 PRODUCTOS REGISTRADOS</span>
+            </div>
+        </section>
+    </header>
+        <section class="columna-añadir">
+            <section class="añadir-producto">
+                <div class="section-info">
+                    <span class="subtitulo-producto">NUEVO REGISTRO</span>
+                    <h2 class="titulo-producto" id="titulo-formulario">AÑADIR PRODUCTO</h2>
+                </div>
+                <form id="form-producto">
+                    <div class="nombre">
+                        <label for="nombre">NOMBRE</label>
+                        <input type="text" class="formulario" id="nombre" name="nombre" placeholder="Ej. Chaqueta Red Bull" required>
+                    </div>
+
+                    <div class="nombre">
+                        <label for="codigo">CODIGO</label>
+                        <input type="text" class="formulario" id="codigo" name="codigo" placeholder="Ej. COL-F1-001" required>
+                    </div>
+
+                    <div class="nombre">
+                        <label for="categoria">CATEGORIA</label>
+                        <select class="formulario" id="categoria" name="categoria" required>
+                            <option value="" disabled selected>Selecciona una categoría</option>
+                            <option value="camisetas">Camisetas</option>
+                            <option value="gorras">Gorras</option>
+                            <option value="chaquetas">Chaquetas</option>
+                            <option value="coleccionables">Coleccionables</option>
+                            <option value="accesorios">Accesorios</option>
+                        </select>
+                    </div>
+
+                    <div class="nombre">
+                        <label for="equipo">EQUIPO</label>
+                        <select class="formulario" id="equipo" name="equipo" required>
+                            <option value="" disabled selected>Selecciona un equipo</option>
+                            <option value="ferrari">Ferrari</option>
+                            <option value="red-bull-racing">Red Bull Racing</option>
+                            <option value="mclaren">McLaren</option>
+                            <option value="mercedes">Mercedes</option>
+                            <option value="cadillac">Cadillac</option>
+                            <option value="williams">Williams</option>
+                        </select>
+                    </div>
+
+                    <div class="nombre campos-numericos">
+                        <label for="precio">PRECIO (COP)</label>
+                        <input type="number" class="formulario" id="precio" name="precio" placeholder="389000" min="0" step="1" required>
+
+                        <label for="stock">STOCK</label>
+                        <input type="number" class="formulario" id="stock" name="stock" placeholder="10" min="0" step="1" required>
+                    </div>
+
+                    <div class="nombre">
+                        <label for="etiqueta">ETIQUETA</label>
+                        <input type="text" class="formulario" id="etiqueta" name="etiqueta" placeholder="Ej. Bestseller">
+                    </div>
+
+                    <div class="nombre">
+                        <label for="estado">ESTADO</label>
+                        <select class="formulario" id="estado" name="estado">
+                            <option value="activo">Activo</option>
+                            <option value="inactivo">Inactivo</option>
+                        </select>
+                    </div>
+
+                    <div class="imagen">
+                        <label for="imagen">IMAGEN</label>
+                        <input type="file" class="formulario" id="imagen" name="imagen" accept="image/*">
+                        <img id="vista-previa" class="vista-previa" alt="Vista previa del producto" hidden>
+                    </div>
+
+                    <p id="mensaje-formulario" class="mensaje-formulario" role="status" aria-live="polite"></p>
+                    <button type="submit" class="btn-guardar" id="btn-guardar">
+                        GUARDAR PRODUCTO <span>&rarr;</span>
+                    </button>
+                    <button type="button" class="btn-cancelar" id="btn-cancelar" hidden>Cancelar edición</button>
+                </form>
+            </section>
+            <section class="lista-productos">
+                <div class="header-lista">
+                    <div class="section-productos">
+                        <span class="subtitulo-producto">LEER / ACTUALIZAR / ELIMINAR</span>
+                        <h2 class="titulo-productos">PRODUCTOS F1</h2>
+                    </div>
+                    <div class="buscador-container">
+                        <input type="search" placeholder="Buscar por nombre o SKU" class="input-buscar" id="buscador">
+                    </div>
+                </div>
+
+                <table class="tabla-productos">
+                    <thead>
+                        <tr>
+                            <th>PRODUCTO</th>
+                            <th>CATEGORÍA</th>
+                            <th>PRECIO</th>
+                            <th>STOCK</th>
+                            <th>ESTADO</th>
+                            <th class="text-right">ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-productos"></tbody>
+                </table>
+                <p id="estado-lista" class="estado-lista">Todavía no hay productos. Agrega el primero con el formulario.</p>
+            </section>
+        </section>
+    </main>
+    </div>
+</body>
+
+</html>

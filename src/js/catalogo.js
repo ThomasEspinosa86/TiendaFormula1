@@ -1,7 +1,6 @@
 
 (function () {
   const POR_PAGINA = 8;
-  const CLAVE_PRODUCTOS = 'zonaDRSProductos';
 
   const lista = document.getElementById('listaProductos');
   const form = document.getElementById('formFiltros');
@@ -9,88 +8,140 @@
   const contador = document.getElementById('contador');
   const paginacion = document.getElementById('paginacion');
   const sinResultados = document.getElementById('sinResultados');
+  const claveProductosAdmin = 'zonaDRSProductos';
 
   let paginaActual = 1;
 
-  function agregarProductosDelAdministrador() {
-    let guardados;
+  function textoNormalizado(texto) {
+    return String(texto || '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLocaleLowerCase();
+  }
+
+  function slugCategoria(categoria) {
+    const texto = textoNormalizado(categoria);
+    if (texto.includes('camiseta') || texto.includes('polo')) return 'camisetas';
+    if (texto.includes('gorra')) return 'gorras';
+    if (texto.includes('chaqueta')) return 'chaquetas';
+    if (texto.includes('coleccion')) return 'coleccionables';
+    if (texto.includes('accesorio')) return 'accesorios';
+    return texto.trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'otros';
+  }
+
+  function equipoProducto(producto) {
+    const texto = textoNormalizado(producto.nombre + ' ' + producto.categoria);
+    if (texto.includes('red bull')) return 'red-bull-racing';
+    const equipos = ['ferrari', 'mclaren', 'mercedes', 'cadillac', 'williams'];
+    return equipos.find(function (equipo) { return texto.includes(equipo); }) || '';
+  }
+
+  function cargarProductosAdmin() {
     try {
-      guardados = localStorage.getItem(CLAVE_PRODUCTOS);
+      const datos = JSON.parse(localStorage.getItem(claveProductosAdmin) || '[]');
+      if (!Array.isArray(datos)) throw new Error('El formato guardado no es válido.');
+      return datos;
     } catch (error) {
-      console.error('No se pudieron leer los productos del administrador.', error);
-      return;
+      console.error('No se pudieron cargar los productos del administrador:', error);
+      return [];
+    }
+  }
+
+  function agregarCategoriaFiltro(producto) {
+    const categoria = String(producto.categoria || 'Otros');
+    const valor = slugCategoria(categoria);
+    const fieldset = document.getElementById('filtrosCategorias');
+    const existe = Array.from(fieldset.querySelectorAll('input[name="categoria"]'))
+      .some(function (input) { return input.value === valor; });
+    if (existe) return;
+
+    const contenedor = document.createElement('div');
+    const input = document.createElement('input');
+    const label = document.createElement('label');
+    contenedor.className = 'form-check';
+    contenedor.dataset.categoriaAdmin = 'true';
+    input.className = 'form-check-input';
+    input.type = 'checkbox';
+    input.name = 'categoria';
+    input.value = valor;
+    input.id = 'cat-admin-' + valor;
+    label.className = 'form-check-label';
+    label.htmlFor = input.id;
+    label.textContent = categoria;
+    contenedor.append(input, label);
+    fieldset.append(contenedor);
+  }
+
+  function crearCardAdmin(producto) {
+    const contenedor = document.createElement('div');
+    const articulo = document.createElement('article');
+    const areaImagen = document.createElement('div');
+    const imagen = document.createElement('img');
+    const cuerpo = document.createElement('div');
+    const categoria = document.createElement('small');
+    const nombre = document.createElement('h2');
+    const precio = document.createElement('p');
+    const boton = document.createElement('button');
+    const etiquetaTexto = String(producto.etiqueta || '').trim();
+
+    contenedor.className = 'col producto';
+    contenedor.dataset.nombre = producto.nombre;
+    contenedor.dataset.codigo = producto.codigo;
+    contenedor.dataset.categoria = slugCategoria(producto.categoria);
+    contenedor.dataset.equipo = equipoProducto(producto);
+    contenedor.dataset.precio = String(Number(producto.precio) || 0);
+    contenedor.dataset.stock = String(Number(producto.stock) || 0);
+    contenedor.dataset.etiqueta = etiquetaTexto;
+    contenedor.dataset.estado = String(producto.estado || '').toLocaleLowerCase();
+    contenedor.dataset.vendidos = '0';
+    contenedor.dataset.creado = String(Number(producto.createdAt) || Number(String(producto.id).split('-')[0]) || 0);
+    contenedor.dataset.origen = 'admin';
+    articulo.className = 'card producto-card h-100';
+    areaImagen.className = 'producto-img position-relative';
+
+    if (etiquetaTexto) {
+      const etiqueta = document.createElement('span');
+      etiqueta.className = 'badge etiqueta position-absolute top-0 start-0 m-2';
+      etiqueta.textContent = etiquetaTexto;
+      areaImagen.append(etiqueta);
     }
 
-    if (!guardados) return;
+    imagen.className = 'card-img-top';
+    imagen.alt = producto.nombre;
+    imagen.loading = 'lazy';
+    imagen.src = producto.imagen || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="600" height="450" viewBox="0 0 600 450"%3E%3Crect width="600" height="450" fill="%23D9D9D9"/%3E%3C/svg%3E';
+    areaImagen.append(imagen);
+    cuerpo.className = 'card-body d-flex flex-column';
+    categoria.className = 'producto-categoria text-uppercase';
+    categoria.textContent = producto.categoria || 'Otros';
+    nombre.className = 'producto-nombre h6';
+    nombre.textContent = producto.nombre;
+    precio.className = 'producto-precio mb-3';
+    precio.textContent = '$ ' + new Intl.NumberFormat('es-CO').format(Number(producto.precio) || 0);
+    boton.type = 'button';
+    boton.className = 'btn btn-agregar mt-auto w-100';
+    boton.textContent = 'Agregar al carrito';
+    cuerpo.append(categoria, nombre, precio, boton);
+    articulo.append(areaImagen, cuerpo);
+    contenedor.append(articulo);
+    return contenedor;
+  }
 
-    let productos;
-    try {
-      productos = JSON.parse(guardados);
-      if (!Array.isArray(productos)) {
-        throw new Error('El formato guardado no es una lista de productos.');
-      }
-    } catch (error) {
-      console.error('No se pudieron interpretar los productos del administrador.', error);
-      return;
-    }
+  function mostrarProductosAdmin() {
+    obtenerProductos().filter(function (producto) {
+      return producto.dataset.origen === 'admin';
+    }).forEach(function (producto) {
+      producto.remove();
+    });
 
-    productos.forEach(function (producto) {
-      if (!producto || typeof producto !== 'object') return;
+    document.querySelectorAll('[data-categoria-admin]').forEach(function (filtro) {
+      filtro.remove();
+    });
 
-      const nombre = String(producto.nombre || '');
-      const categoria = String(producto.categoria || '').trim().toLocaleLowerCase();
-      const precio = Number(producto.precio);
-      const tarjeta = document.createElement('div');
-      tarjeta.className = 'col producto';
-      tarjeta.dataset.nombre = nombre;
-      tarjeta.dataset.codigo = String(producto.codigo || '');
-      tarjeta.dataset.categoria = categoria;
-      tarjeta.dataset.equipo = String(producto.equipo || '');
-      tarjeta.dataset.precio = String(precio);
-      tarjeta.dataset.stock = String(Number(producto.stock) || 0);
-      tarjeta.dataset.etiqueta = String(producto.etiqueta || '');
-      tarjeta.dataset.estado = String(producto.estado || '').toLocaleLowerCase();
-      tarjeta.dataset.vendidos = '0';
-
-      const articulo = document.createElement('article');
-      articulo.className = 'card producto-card h-100';
-      const contenedorImagen = document.createElement('div');
-      contenedorImagen.className = 'producto-img position-relative';
-
-      if (producto.etiqueta) {
-        const etiqueta = document.createElement('span');
-        etiqueta.className = 'badge etiqueta position-absolute top-0 start-0 m-2';
-        etiqueta.textContent = producto.etiqueta;
-        contenedorImagen.appendChild(etiqueta);
-      }
-
-      const imagen = document.createElement('img');
-      imagen.className = 'card-img-top';
-      imagen.alt = nombre;
-      imagen.loading = 'lazy';
-      imagen.src = producto.imagen || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="50" height="50"%3E%3Crect width="50" height="50" fill="%23eaeaea"/%3E%3C/svg%3E';
-      contenedorImagen.appendChild(imagen);
-
-      const cuerpo = document.createElement('div');
-      cuerpo.className = 'card-body d-flex flex-column';
-      const textoCategoria = document.createElement('small');
-      textoCategoria.className = 'producto-categoria text-uppercase';
-      textoCategoria.textContent = categoria;
-      const titulo = document.createElement('h2');
-      titulo.className = 'producto-nombre h6';
-      titulo.textContent = nombre;
-      const textoPrecio = document.createElement('p');
-      textoPrecio.className = 'producto-precio mb-3';
-      textoPrecio.textContent = '$ ' + new Intl.NumberFormat('es-CO').format(precio);
-      const boton = document.createElement('button');
-      boton.type = 'button';
-      boton.className = 'btn btn-agregar mt-auto w-100';
-      boton.textContent = 'Agregar al carrito';
-
-      cuerpo.append(textoCategoria, titulo, textoPrecio, boton);
-      articulo.append(contenedorImagen, cuerpo);
-      tarjeta.appendChild(articulo);
-      lista.appendChild(tarjeta);
+    cargarProductosAdmin().forEach(function (producto) {
+      if (!producto || !producto.nombre || !producto.codigo) return;
+      agregarCategoriaFiltro(producto);
+      lista.prepend(crearCardAdmin(producto));
     });
   }
 
@@ -125,6 +176,7 @@
     const criterio = selectOrden.value;
     const copia = productos.slice();
     copia.sort(function (a, b) {
+      if (criterio === 'recientes') return Number(b.dataset.creado || 0) - Number(a.dataset.creado || 0);
       if (criterio === 'menor') return Number(a.dataset.precio) - Number(b.dataset.precio);
       if (criterio === 'mayor') return Number(b.dataset.precio) - Number(a.dataset.precio);
       if (criterio === 'nombre') return a.dataset.nombre.localeCompare(b.dataset.nombre, 'es');
@@ -205,6 +257,15 @@
     mostrar();
   };
 
-  agregarProductosDelAdministrador();
+  mostrarProductosAdmin();
+
+  window.addEventListener('storage', function (evento) {
+    if (evento.key === claveProductosAdmin) {
+      mostrarProductosAdmin();
+      paginaActual = 1;
+      mostrar();
+    }
+  });
+
   mostrar();
 })();

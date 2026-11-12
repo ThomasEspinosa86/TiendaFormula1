@@ -186,7 +186,8 @@ formulario.addEventListener('submit', async (evento) => {
             stock: Number(datos.get('stock')),
             etiqueta: datos.get('etiqueta').trim(),
             estado: datos.get('estado'),
-            imagen
+            imagen,
+            createdAt: productoEditando ? productoEditando.createdAt || Date.now() : Date.now()
         };
         const productosActualizados = productoEditando
             ? productos.map((actual) => actual.id === producto.id ? producto : actual)

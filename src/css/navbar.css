@@ -74,9 +74,24 @@ pagina web y sus ajustes */
     filter: invert(1);
 }
 
+.navbar-links a.cart-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .cart-count{
-    color: #e10600;
-    font-size: 1.1rem
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.35rem;
+    height: 1.35rem;
+    padding: 0 .35rem;
+    border-radius: 999px;
+    background-color: #e10600;
+    color: #ffffff;
+    font-size: .75rem;
+    font-style: normal;
 }
 
 /* Se activa solo en pantallas de 768px o menos (Celulares y Tablets) */

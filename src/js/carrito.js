@@ -138,16 +138,17 @@ function vaciarCarrito() {
 // Lee los datos de una tarjeta de producto.
 // Sirve para las tarjetas del catálogo (data-...) y también para las del index (.product-card / .new-card)
 function leerProducto(tarjeta) {
-  const elementoNombre = tarjeta.querySelector('.product-name, .new-name, .nombre-producto');
-  const elementoPrecio = tarjeta.querySelector('.product-price, .new-price, .precio-producto');
+  const datosProducto = tarjeta.closest('.producto') || tarjeta;
+  const elementoNombre = tarjeta.querySelector('.product-name, .new-name, .nombre-producto, .producto-nombre');
+  const elementoPrecio = tarjeta.querySelector('.product-price, .new-price, .precio-producto, .producto-precio');
   const imagen = tarjeta.querySelector('img');
 
-  const nombre = (tarjeta.dataset.nombre || elementoNombre.textContent).trim();
-  const textoPrecio = tarjeta.dataset.precio || elementoPrecio.textContent;
+  const nombre = (datosProducto.dataset.nombre || (elementoNombre ? elementoNombre.textContent : '')).trim();
+  const textoPrecio = datosProducto.dataset.precio || (elementoPrecio ? elementoPrecio.textContent : '');
   const precio = parseInt(String(textoPrecio).replace(/\D/g, ''), 10);
 
   return {
-    id: tarjeta.dataset.id || crearId(nombre),
+    id: datosProducto.dataset.id || crearId(nombre),
     nombre: nombre,
     precio: precio,
     imagen: imagen ? imagen.src : ''
@@ -198,6 +199,8 @@ function montarMiniCarritoEnNavbar() {
 
   const panel = document.createElement('div');
   panel.id = 'mini-carrito-panel';
+  panel.setAttribute('role', 'region');
+  panel.setAttribute('aria-label', 'Carrito de compras');
   panel.innerHTML =
     '<h6>Tu carrito</h6>' +
     '<div id="mini-lista"></div>' +
@@ -206,17 +209,20 @@ function montarMiniCarritoEnNavbar() {
 
   item.style.position = 'relative';
   item.appendChild(panel);
+  enlace.setAttribute('aria-controls', panel.id);
 
   // el icono del carrito abre y cierra el desplegable
   enlace.addEventListener('click', function (evento) {
     evento.preventDefault();
-    panel.classList.toggle('abierto');
+    const abierto = panel.classList.toggle('abierto');
+    enlace.setAttribute('aria-expanded', String(abierto));
   });
 
   // clic fuera del carrito lo cierra (composedPath sigue valiendo aunque el botón se redibuje)
   document.addEventListener('click', function (evento) {
     if (!evento.composedPath().includes(item)) {
       panel.classList.remove('abierto');
+      enlace.setAttribute('aria-expanded', 'false');
     }
   });
 }
@@ -226,6 +232,11 @@ function abrirMiniCarrito() {
   const panel = document.getElementById('mini-carrito-panel');
   if (panel) {
     panel.classList.add('abierto');
+    const contador = document.querySelector('.cart-count');
+    const enlace = contador ? contador.closest('a') : null;
+    if (enlace) {
+      enlace.setAttribute('aria-expanded', 'true');
+    }
   }
 }
 
@@ -335,7 +346,7 @@ document.addEventListener('click', function (evento) {
   // botones de agregar (catálogo y tarjetas del index)
   const botonAgregar = evento.target.closest('.btn-agregar, .product-card .btn-f1, .new-card .btn-f1-dark');
   if (botonAgregar) {
-    const tarjeta = botonAgregar.closest('.tarjeta-producto, .product-card, .new-card');
+    const tarjeta = botonAgregar.closest('.tarjeta-producto, .producto, .product-card, .new-card');
     if (tarjeta) {
       agregarAlCarrito(leerProducto(tarjeta));
     }

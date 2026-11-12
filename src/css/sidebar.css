@@ -113,8 +113,36 @@ body {
   border-left-color: #FFFFFF;
 }
 
-.dash-sidebar-pie {
+.dash-home-link {
   margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  padding: .65rem .9rem;
+  color: #D9D9D9;
+  background-color: #1E1E1E;
+  border: 1px solid #333333;
+  text-decoration: none;
+  font-size: .9rem;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+  transition: background-color .2s, border-color .2s, color .2s;
+}
+
+.dash-home-link:hover {
+  color: #FFFFFF;
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.dash-home-link:focus-visible {
+  outline: 3px solid #FFFFFF;
+  outline-offset: 2px;
+}
+
+.dash-sidebar-pie {
+  margin-top: 1rem;
   display: flex;
   align-items: center;
   gap: .6rem;

@@ -56,6 +56,7 @@ function actualizarUsuarioNavbar() {
       enlace.className = 'usuario-login';
       enlace.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Usuario" class="nav-icon usuario-icono"> Iniciar sesion';
       enlace.href = URL_LOGIN;
+      
     }
   });
 }

@@ -4,6 +4,7 @@
 
   const lista = document.getElementById('listaProductos');
   const form = document.getElementById('formFiltros');
+  const busqueda = document.getElementById('busqueda');
   const selectOrden = document.getElementById('ordenar');
   const contador = document.getElementById('contador');
   const paginacion = document.getElementById('paginacion');
@@ -157,6 +158,7 @@
   function filtrar() {
     const categorias = marcados('categoria');
     const equipos = marcados('equipo');
+    const termino = textoNormalizado(busqueda.value.trim());
     const minValor = document.getElementById('precioMin').value;
     const maxValor = document.getElementById('precioMax').value;
     const min = minValor === '' ? 0 : Number(minValor);
@@ -166,6 +168,7 @@
       const d = p.dataset;
       const precio = Number(d.precio);
       return d.estado === 'activo' &&
+        textoNormalizado(d.nombre).includes(termino) &&
         (categorias.length === 0 || categorias.includes(d.categoria)) &&
         (equipos.length === 0 || equipos.includes(d.equipo)) &&
         precio >= min && precio <= max;
@@ -240,7 +243,7 @@
   });
 
   form.addEventListener('reset', function () {
-    
+    busqueda.value = '';
     setTimeout(function () {
       paginaActual = 1;
       mostrar();
@@ -248,6 +251,11 @@
   });
 
   selectOrden.addEventListener('change', function () {
+    paginaActual = 1;
+    mostrar();
+  });
+
+  busqueda.addEventListener('input', function () {
     paginaActual = 1;
     mostrar();
   });

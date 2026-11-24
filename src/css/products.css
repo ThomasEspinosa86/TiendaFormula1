@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,400;0,600;0,700;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,800;1,900&family=Barlow:wght@400;500;600;700&display=swap');
 
 *,
 *::before,
@@ -10,7 +10,7 @@
 /* Mantén los estilos del catálogo aislados de la barra lateral compartida. */
 .dash-main {
     box-sizing: border-box;
-    font-family: 'Titillium Web', system-ui, sans-serif;
+    font-family: 'Barlow', system-ui, sans-serif;
 }
 
 .dash-main * {

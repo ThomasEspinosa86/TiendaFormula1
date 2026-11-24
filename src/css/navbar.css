@@ -1,10 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@1,700;1,900&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,800;1,900&family=Barlow:wght@400;500;600;700&display=swap');
 
 .navbar {
     display: flex;
@@ -13,9 +7,10 @@
     background-color: #000000;
     padding: 0 1rem;
     color: white;
-    font-family: 'Titillium Web', sans-serif;
+    font-family: 'Barlow Condensed', 'Barlow', sans-serif;
     font-style: italic;
-    font-weight: 900;
+    font-weight: 800;
+    letter-spacing: .03em;
     text-transform: uppercase;
 }
 
@@ -27,7 +22,7 @@
 }
 
 .navbar-links li{
-    border-right: 1px solid #e10600
+    border-right: 1px solid #FF1801
 }
 
 .navbar-links a{
@@ -41,7 +36,7 @@
 }
 
 .navbar-links a:hover{
-    color: #e10600
+    color: #FF1801
 }
 
 /* parte del full-top */
@@ -50,9 +45,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color:#e10600;
+    background-color:#FF1801;
     color:#ffffff;
-    font-family: 'Titillium Web', sans-serif;
+    font-family: 'Barlow Condensed', 'Barlow', sans-serif;
     font-style: italic;
     font-weight: 700;
     text-transform: uppercase;
@@ -88,7 +83,7 @@ pagina web y sus ajustes */
     height: 1.35rem;
     padding: 0 .35rem;
     border-radius: 999px;
-    background-color: #e10600;
+    background-color: #FF1801;
     color: #ffffff;
     font-size: .75rem;
     font-style: normal;

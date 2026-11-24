@@ -178,20 +178,20 @@ function montarMiniCarritoEnNavbar() {
     estilos.id = 'estilos-mini-carrito';
     estilos.textContent =
       '#mini-carrito-panel{display:none;position:absolute;right:0;top:100%;z-index:1050;width:320px;max-width:90vw;' +
-        'background:#000;color:#fff;border:1px solid #e10600;border-top:3px solid #e10600;padding:16px;text-align:left;' +
+        'background:#000;color:#fff;border:1px solid #FF1801;border-top:3px solid #FF1801;padding:16px;text-align:left;' +
         "font-family:'Barlow',system-ui,sans-serif;font-style:normal;font-weight:500;text-transform:none;font-size:.9rem;}" +
       '#mini-carrito-panel.abierto{display:block;}' +
       '#mini-carrito-panel #mini-lista{max-height:260px;overflow-y:auto;}' +
-      '#mini-carrito-panel h6{margin:0 0 10px;font-family:\'Titillium Web\',sans-serif;font-style:italic;font-weight:900;text-transform:uppercase;color:#fff;}' +
+      '#mini-carrito-panel h6{margin:0 0 10px;font-family:\'Barlow Condensed\',sans-serif;font-style:italic;font-weight:900;text-transform:uppercase;color:#fff;}' +
       '#mini-carrito-panel .mini-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #333;}' +
       '#mini-carrito-panel .mini-item img{width:48px;height:48px;object-fit:cover;background:#222;}' +
       '#mini-carrito-panel .mini-nombre{margin:0;font-size:.8rem;line-height:1.2;color:#fff;}' +
       '#mini-carrito-panel small{color:#a3a3a3;}' +
       '#mini-carrito-panel .mini-vacio{color:#a3a3a3;}' +
       '#mini-carrito-panel .btn-quitar{background:none;border:0;color:#fff;font-size:1.3rem;line-height:1;cursor:pointer;padding:0 4px;}' +
-      '#mini-carrito-panel .btn-quitar:hover{color:#e10600;}' +
+      '#mini-carrito-panel .btn-quitar:hover{color:#FF1801;}' +
       '#mini-carrito-panel .mini-total-fila{display:flex;justify-content:space-between;font-weight:700;margin-top:12px;}' +
-      '#mini-carrito-panel a.mini-ver{display:block;margin-top:12px;padding:10px;background:#e10600;color:#fff;text-align:center;' +
+      '#mini-carrito-panel a.mini-ver{display:block;margin-top:12px;padding:10px;background:#FF1801;color:#fff;text-align:center;' +
         'text-decoration:none;font-weight:700;text-transform:uppercase;}' +
       '#mini-carrito-panel a.mini-ver:hover{background:#fff;color:#000;}';
     document.head.appendChild(estilos);

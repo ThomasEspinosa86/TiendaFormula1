@@ -1,7 +1,6 @@
 // carrito.js
 // Vista del carrito, agregar, eliminar y guardado en localStorage
 // La lógica de sumar y restar cantidades está en cantidad.js 
-
 const CLAVE_CARRITO = 'carritoZonaDRS';
 const MAX_CANTIDAD = 10;
 const URL_LOGIN = new URL('../../pages/auth/login.html', document.currentScript.src).href;
@@ -23,7 +22,6 @@ function actualizarUsuarioNavbar() {
 
     const esUsuario = enlace.querySelector('img[alt="Usuario"]') ||
       enlace.textContent.toLowerCase().includes('iniciar sesion') ||
-      enlace.getAttribute('href') === '#' ||
       (enlace.getAttribute('href') || '').includes('auth/login.html');
     if (!esUsuario) return;
 
@@ -54,9 +52,8 @@ function actualizarUsuarioNavbar() {
       });
     } else if (!item.classList.contains('usuario-menu')) {
       enlace.className = 'usuario-login';
-      enlace.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Usuario" class="nav-icon usuario-icono"> Iniciar sesion';
+      enlace.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Usuario" class="nav-icon usuario-icono"> Iniciar sesión';
       enlace.href = URL_LOGIN;
-      
     }
   });
 }
@@ -220,49 +217,33 @@ function leerProducto(tarjeta) {
   };
 }
 
-// ---------- mini-carrito dentro del navbar del equipo ----------
-// El navbar de los compañeros solo trae el icono y el contador. Aquí se le monta
-// el desplegable del carrito sin modificar su navbar.html ni su CSS.
-
-// se calcula desde este archivo (src/js/carrito.js), así sirve desde cualquier página
+// ---------- carrito flotante ----------
 const URL_PAGINA_CARRITO = new URL('../../pages/shop/carrito.html', document.currentScript.src).href;
 
-function montarMiniCarritoEnNavbar() {
-  const contador = document.querySelector('.cart-count');
-  if (!contador || document.getElementById('mini-carrito-panel')) {
-    return;
-  }
-  const enlace = contador.closest('a');
-  const item = enlace ? enlace.closest('li') : null;
-  if (!enlace || !item) {
+function montarCarritoFlotante() {
+  if (document.getElementById('carrito-flotante')) {
     return;
   }
 
-  if (!document.getElementById('estilos-mini-carrito')) {
-    const estilos = document.createElement('style');
-    estilos.id = 'estilos-mini-carrito';
-    estilos.textContent =
-      '#mini-carrito-panel{display:none;position:absolute;right:0;top:100%;z-index:1050;width:320px;max-width:90vw;' +
-        'background:#000;color:#fff;border:1px solid #e10600;border-top:3px solid #e10600;padding:16px;text-align:left;' +
-        "font-family:'Barlow',system-ui,sans-serif;font-style:normal;font-weight:500;text-transform:none;font-size:.9rem;}" +
-      '#mini-carrito-panel.abierto{display:block;}' +
-      '#mini-carrito-panel #mini-lista{max-height:260px;overflow-y:auto;}' +
-      '#mini-carrito-panel h6{margin:0 0 10px;font-family:\'Titillium Web\',sans-serif;font-style:italic;font-weight:900;text-transform:uppercase;color:#fff;}' +
-      '#mini-carrito-panel .mini-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #333;}' +
-      '#mini-carrito-panel .mini-item img{width:48px;height:48px;object-fit:cover;background:#222;}' +
-      '#mini-carrito-panel .mini-nombre{margin:0;font-size:.8rem;line-height:1.2;color:#fff;}' +
-      '#mini-carrito-panel small{color:#a3a3a3;}' +
-      '#mini-carrito-panel .mini-vacio{color:#a3a3a3;}' +
-      '#mini-carrito-panel .btn-quitar{background:none;border:0;color:#fff;font-size:1.3rem;line-height:1;cursor:pointer;padding:0 4px;}' +
-      '#mini-carrito-panel .btn-quitar:hover{color:#e10600;}' +
-      '#mini-carrito-panel .mini-total-fila{display:flex;justify-content:space-between;font-weight:700;margin-top:12px;}' +
-      '#mini-carrito-panel a.mini-ver{display:block;margin-top:12px;padding:10px;background:#e10600;color:#fff;text-align:center;' +
-        'text-decoration:none;font-weight:700;text-transform:uppercase;}' +
-      '#mini-carrito-panel a.mini-ver:hover{background:#fff;color:#000;}';
-    document.head.appendChild(estilos);
-  }
-
+  const contenedor = document.createElement('div');
+  const enlace = document.createElement('a');
+  const imagen = document.createElement('img');
+  const contador = document.createElement('span');
   const panel = document.createElement('div');
+
+  contenedor.id = 'carrito-flotante';
+  enlace.className = 'cart-link';
+  enlace.href = URL_PAGINA_CARRITO;
+  enlace.setAttribute('aria-label', 'Abrir carrito de compras');
+  enlace.setAttribute('aria-expanded', 'false');
+  imagen.className = 'nav-icon';
+  imagen.src = 'https://cdn-icons-png.flaticon.com/512/1170/1170678.png';
+  imagen.alt = '';
+  contador.className = 'cart-count';
+  contador.textContent = '0';
+  contador.hidden = true;
+  enlace.append(imagen, contador);
+
   panel.id = 'mini-carrito-panel';
   panel.setAttribute('role', 'region');
   panel.setAttribute('aria-label', 'Carrito de compras');
@@ -272,33 +253,30 @@ function montarMiniCarritoEnNavbar() {
     '<div class="mini-total-fila"><span>Total</span><span id="mini-total">$0</span></div>' +
     '<a class="mini-ver" href="' + URL_PAGINA_CARRITO + '">Ver carrito</a>';
 
-  item.style.position = 'relative';
-  item.appendChild(panel);
+  contenedor.append(enlace, panel);
+  document.body.appendChild(contenedor);
   enlace.setAttribute('aria-controls', panel.id);
 
-  // el icono del carrito abre y cierra el desplegable
   enlace.addEventListener('click', function (evento) {
     evento.preventDefault();
     const abierto = panel.classList.toggle('abierto');
     enlace.setAttribute('aria-expanded', String(abierto));
   });
 
-  // clic fuera del carrito lo cierra (composedPath sigue valiendo aunque el botón se redibuje)
   document.addEventListener('click', function (evento) {
-    if (!evento.composedPath().includes(item)) {
+    if (!evento.composedPath().includes(contenedor)) {
       panel.classList.remove('abierto');
       enlace.setAttribute('aria-expanded', 'false');
     }
   });
 }
 
-// Abre el desplegable del navbar (por ejemplo, al agregar un producto)
+// Abre el desplegable al agregar un producto.
 function abrirMiniCarrito() {
   const panel = document.getElementById('mini-carrito-panel');
   if (panel) {
     panel.classList.add('abierto');
-    const contador = document.querySelector('.cart-count');
-    const enlace = contador ? contador.closest('a') : null;
+    const enlace = document.querySelector('#carrito-flotante .cart-link');
     if (enlace) {
       enlace.setAttribute('aria-expanded', 'true');
     }
@@ -308,18 +286,17 @@ function abrirMiniCarrito() {
 // ---------- dibujar la vista ----------
 
 function dibujarMiniCarrito() {
-  montarMiniCarritoEnNavbar(); // se monta cuando el navbar ya está en la página
+  montarCarritoFlotante();
   const carrito = obtenerCarrito();
 
-  // Contador del navbar del equipo (.cart-count) y del mini-carrito anterior (#contador-carrito)
   const unidades = contarUnidades(carrito);
   document.querySelectorAll('.cart-count, #contador-carrito').forEach(function (contador) {
     contador.textContent = unidades;
+    contador.hidden = unidades === 0;
   });
 
   const lista = document.getElementById('mini-lista');
   const total = document.getElementById('mini-total');
-  // El navbar del equipo no tiene mini-carrito desplegable
   if (!lista) {
     return;
   }
@@ -411,9 +388,6 @@ document.addEventListener('click', function (evento) {
   // botones de agregar (catálogo y tarjetas del index)
   const botonAgregar = evento.target.closest('.btn-agregar, .product-card .btn-f1, .new-card .btn-f1-dark');
   if (botonAgregar) {
-    if (requiereInicioSesion()) {
-      return;
-    }
     const tarjeta = botonAgregar.closest('.tarjeta-producto, .producto, .product-card, .new-card');
     if (tarjeta) {
       agregarAlCarrito(leerProducto(tarjeta));
@@ -453,41 +427,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (botonFinalizar) {
     botonFinalizar.addEventListener('click', function () {
-      if (requiereInicioSesion()) {
-        return;
-      }
       guardarCarrito([]);
       actualizarVista();
       mostrarAlerta('success', '¡Gracias por tu compra! Tu pedido quedó registrado.');
     });
   }
 
-  actualizarUsuarioNavbar();
   actualizarVista();
-
-  // El navbar se inserta con fetch (puede llegar después): cuando aparece, actualiza el contador
-  const contenedorNavbar = document.getElementById('navbar-container');
-  if (contenedorNavbar) {
-    new MutationObserver(function () {
-      actualizarUsuarioNavbar();
-      dibujarMiniCarrito();
-    }).observe(contenedorNavbar, { childList: true });
-  }
 });
 
 // si abren el carrito en otra pestaña, se mantiene sincronizado
-window.addEventListener('storage', function (evento) {
-  if (evento.key === 'usuarioActivo') {
-    actualizarUsuarioNavbar();
-  }
-  actualizarVista();
-});
-
-document.addEventListener('click', function (evento) {
-  document.querySelectorAll('.usuario-menu').forEach(function (item) {
-    if (!item.contains(evento.target)) {
-      item.querySelector('.usuario-menu-desplegable')?.classList.remove('abierto');
-      item.querySelector('.usuario-menu-boton')?.setAttribute('aria-expanded', 'false');
-    }
-  });
-});
+window.addEventListener('storage', actualizarVista);

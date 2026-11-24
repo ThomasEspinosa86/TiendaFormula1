@@ -108,7 +108,10 @@
 
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
           <p id="contador" class="mb-0 small text-secondary" aria-live="polite">Mostrando 8 de 10 productos</p>
-          <div class="d-flex align-items-center gap-2">
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <label for="busqueda" class="visually-hidden">Buscar producto</label>
+            <input id="busqueda" type="search" class="form-control form-control-sm catalogo-busqueda"
+                   placeholder="Buscar por nombre..." aria-label="Buscar producto">
             <label for="ordenar" class="visually-hidden">Ordenar por</label>
             <select id="ordenar" class="form-select form-select-sm w-auto">
               <option value="recientes" selected>Ordenar por: Más recientes</option>

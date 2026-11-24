@@ -1,9 +1,71 @@
 // carrito.js
 // Vista del carrito, agregar, eliminar y guardado en localStorage
 // La lógica de sumar y restar cantidades está en cantidad.js 
-
 const CLAVE_CARRITO = 'carritoZonaDRS';
 const MAX_CANTIDAD = 10;
+const URL_LOGIN = new URL('../../pages/auth/login.html', document.currentScript.src).href;
+
+function obtenerUsuarioActivo() {
+  try {
+    return JSON.parse(localStorage.getItem('usuarioActivo'));
+  } catch (error) {
+    return null;
+  }
+}
+
+function actualizarUsuarioNavbar() {
+  const usuario = obtenerUsuarioActivo();
+
+  document.querySelectorAll('.navbar-links li').forEach(function (item) {
+    const enlace = item.querySelector('a');
+    if (!enlace) return;
+
+    const esUsuario = enlace.querySelector('img[alt="Usuario"]') ||
+      enlace.textContent.toLowerCase().includes('iniciar sesion') ||
+      (enlace.getAttribute('href') || '').includes('auth/login.html');
+    if (!esUsuario) return;
+
+    if (usuario && usuario.nombre) {
+      item.className = 'usuario-menu';
+      item.innerHTML =
+        '<button type="button" class="usuario-menu-boton" aria-expanded="false" aria-haspopup="menu">' +
+        '<img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="" class="nav-icon usuario-icono">' +
+        '<span class="nombre-usuario-navbar"></span>' +
+        '<span class="usuario-flecha" aria-hidden="true">&#9662;</span>' +
+        '</button>' +
+        '<div class="usuario-menu-desplegable" role="menu">' +
+        '<button type="button" class="cerrar-sesion-boton" role="menuitem">Cerrar sesión</button>' +
+        '</div>';
+
+      item.querySelector('.nombre-usuario-navbar').textContent = usuario.nombre;
+      const boton = item.querySelector('.usuario-menu-boton');
+      const menu = item.querySelector('.usuario-menu-desplegable');
+
+      boton.addEventListener('click', function (evento) {
+        evento.stopPropagation();
+        const abierto = menu.classList.toggle('abierto');
+        boton.setAttribute('aria-expanded', String(abierto));
+      });
+      item.querySelector('.cerrar-sesion-boton').addEventListener('click', function () {
+        localStorage.removeItem('usuarioActivo');
+        window.location.reload();
+      });
+    } else if (!item.classList.contains('usuario-menu')) {
+      enlace.className = 'usuario-login';
+      enlace.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Usuario" class="nav-icon usuario-icono"> Iniciar sesión';
+      enlace.href = URL_LOGIN;
+    }
+  });
+}
+
+function requiereInicioSesion() {
+  if (obtenerUsuarioActivo()) {
+    return false;
+  }
+  sessionStorage.setItem('volverDespuesLogin', window.location.href);
+  window.location.href = URL_LOGIN;
+  return true;
+}
 
 // ---------- localStorage ----------
 

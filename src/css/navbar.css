@@ -74,25 +74,135 @@ pagina web y sus ajustes */
     filter: invert(1);
 }
 
-.navbar-links a.cart-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+#carrito-flotante {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 1040;
 }
 
-.cart-count{
+.cart-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    border: 2px solid #e10600;
+    border-radius: 50%;
+    background: #e10600;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .3);
+    transition: background-color .2s, transform .2s;
+}
+
+.cart-link:hover,
+.cart-link:focus-visible {
+    background: #000;
+    transform: translateY(-2px);
+}
+
+.cart-link .nav-icon {
+    width: 26px;
+    height: 26px;
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 1.35rem;
-    height: 1.35rem;
-    padding: 0 .35rem;
+    min-width: 1.4rem;
+    height: 1.4rem;
+    padding: 0 .3rem;
     border-radius: 999px;
-    background-color: #e10600;
+    border: 2px solid #fff;
+    background-color: #000;
     color: #ffffff;
     font-size: .75rem;
     font-style: normal;
 }
+
+.cart-count[hidden] {
+    display: none;
+}
+
+#mini-carrito-panel {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 12px);
+    z-index: 1050;
+    width: 320px;
+    max-width: min(90vw, 360px);
+    padding: 16px;
+    border: 1px solid #e10600;
+    border-top: 3px solid #e10600;
+    background: #000;
+    color: #fff;
+    text-align: left;
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: .9rem;
+    font-style: normal;
+    font-weight: 500;
+    text-transform: none;
+}
+
+#mini-carrito-panel.abierto { display: block; }
+#mini-carrito-panel #mini-lista { max-height: 260px; overflow-y: auto; }
+#mini-carrito-panel h6 {
+    margin: 0 0 10px;
+    color: #fff;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+#mini-carrito-panel .mini-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #333;
+}
+#mini-carrito-panel .mini-item img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    background: #222;
+}
+#mini-carrito-panel .mini-nombre { margin: 0; font-size: .8rem; line-height: 1.2; color: #fff; }
+#mini-carrito-panel small, #mini-carrito-panel .mini-vacio { color: #a3a3a3; }
+#mini-carrito-panel .btn-quitar {
+    padding: 0 4px;
+    border: 0;
+    background: none;
+    color: #fff;
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+}
+#mini-carrito-panel .btn-quitar:hover { color: #e10600; }
+#mini-carrito-panel .mini-total-fila {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    font-weight: 700;
+}
+#mini-carrito-panel a.mini-ver {
+    display: block;
+    margin-top: 12px;
+    padding: 10px;
+    background: #e10600;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+#mini-carrito-panel a.mini-ver:hover { background: #fff; color: #000; }
 
 /* Se activa solo en pantallas de 768px o menos (Celulares y Tablets) */
 @media (max-width: 768px) {
@@ -117,5 +227,15 @@ pagina web y sus ajustes */
 
     .full-top {
         font-size: 0.75rem;     
+    }
+
+    #carrito-flotante {
+        right: 16px;
+        bottom: 16px;
+    }
+
+    .cart-link {
+        width: 54px;
+        height: 54px;
     }
 }

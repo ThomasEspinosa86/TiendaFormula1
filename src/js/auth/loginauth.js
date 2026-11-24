@@ -136,12 +136,14 @@ if (formularioLogin !== null) {
       }
     }
 
-    // Si encontró al usuario, lo guarda y abre el dashboard de administración.
+    // Si encontró al usuario, lo guarda y vuelve al inicio o a la página donde iba a comprar.
     if (usuarioEncontrado !== null) {
       localStorage.setItem("usuarioActivo", JSON.stringify(usuarioEncontrado));
       console.log(JSON.stringify(usuarioEncontrado, null, 2));
       alert("Bienvenido");
-      window.location.href = "../../pages/admin/dashboard.html";
+      let volverA = sessionStorage.getItem("volverDespuesLogin");
+      sessionStorage.removeItem("volverDespuesLogin");
+      window.location.href = volverA || "../../index.html";
     } else {
       // Si no encontró una coincidencia, informa que los datos son incorrectos.
       alert("Correo o contraseña incorrectos");

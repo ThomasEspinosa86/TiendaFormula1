@@ -63,7 +63,13 @@ function requiereInicioSesion() {
     return false;
   }
   sessionStorage.setItem('volverDespuesLogin', window.location.href);
-  window.location.href = URL_LOGIN;
+
+  const modal = document.getElementById('modal-login-compra');
+  if (modal && window.bootstrap) {
+    bootstrap.Modal.getOrCreateInstance(modal).show();
+  } else {
+    window.location.href = URL_LOGIN;
+  }
   return true;
 }
 
@@ -427,6 +433,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (botonFinalizar) {
     botonFinalizar.addEventListener('click', function () {
+      if (requiereInicioSesion()) {
+        return;
+      }
       guardarCarrito([]);
       actualizarVista();
       mostrarAlerta('success', '¡Gracias por tu compra! Tu pedido quedó registrado.');

@@ -106,6 +106,12 @@ if (formularioRegistro !== null) {
 let formularioLogin = document.getElementById("form-login");
 
 if (formularioLogin !== null) {
+  let avisoCompra = document.getElementById("login-aviso-compra");
+
+  if (avisoCompra !== null && sessionStorage.getItem("volverDespuesLogin") !== null) {
+    avisoCompra.hidden = false;
+  }
+
   formularioLogin.addEventListener("submit", function (evento) {
     // Evita que el formulario recargue la página antes de validar los datos.
     evento.preventDefault();
@@ -141,7 +147,15 @@ if (formularioLogin !== null) {
       localStorage.setItem("usuarioActivo", JSON.stringify(usuarioEncontrado));
       console.log(JSON.stringify(usuarioEncontrado, null, 2));
       alert("Bienvenido");
-      window.location.href = "../../pages/admin/dashboard.html";
+
+      let volverA = sessionStorage.getItem("volverDespuesLogin");
+
+      if (volverA !== null) {
+        sessionStorage.removeItem("volverDespuesLogin");
+        window.location.href = volverA;
+      } else {
+        window.location.href = "../../pages/admin/dashboard.html";
+      }
     } else {
       // Si no encontró una coincidencia, informa que los datos son incorrectos.
       alert("Correo o contraseña incorrectos");

@@ -63,7 +63,13 @@ function requiereInicioSesion() {
     return false;
   }
   sessionStorage.setItem('volverDespuesLogin', window.location.href);
-  window.location.href = URL_LOGIN;
+
+  const modal = document.getElementById('modal-login-compra');
+  if (modal && window.bootstrap) {
+    bootstrap.Modal.getOrCreateInstance(modal).show();
+  } else {
+    window.location.href = URL_LOGIN;
+  }
   return true;
 }
 
@@ -427,14 +433,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (botonFinalizar) {
     botonFinalizar.addEventListener('click', function () {
+      if (requiereInicioSesion()) {
+        return;
+      }
       guardarCarrito([]);
       actualizarVista();
       mostrarAlerta('success', '¡Gracias por tu compra! Tu pedido quedó registrado.');
     });
   }
 
+  actualizarUsuarioNavbar();
   actualizarVista();
+
+  const contenedorNavbar = document.getElementById('navbar-container');
+  if (contenedorNavbar) {
+    new MutationObserver(actualizarUsuarioNavbar).observe(contenedorNavbar, { childList: true });
+  }
 });
 
 // si abren el carrito en otra pestaña, se mantiene sincronizado
-window.addEventListener('storage', actualizarVista);
+window.addEventListener('storage', function (evento) {
+  if (evento.key === 'usuarioActivo') {
+    actualizarUsuarioNavbar();
+  }
+  actualizarVista();
+});
+
+document.addEventListener('click', function (evento) {
+  document.querySelectorAll('.usuario-menu').forEach(function (item) {
+    if (!item.contains(evento.target)) {
+      item.querySelector('.usuario-menu-desplegable').classList.remove('abierto');
+      item.querySelector('.usuario-menu-boton').setAttribute('aria-expanded', 'false');
+    }
+  });
+});

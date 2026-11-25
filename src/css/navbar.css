@@ -204,6 +204,99 @@ pagina web y sus ajustes */
 }
 #mini-carrito-panel a.mini-ver:hover { background: #fff; color: #000; }
 
+.navbar-links li.usuario-menu {
+    position: relative;
+    border-right: 0;
+}
+
+.usuario-menu-boton,
+.cerrar-sesion-boton {
+    border: 0;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.usuario-menu-boton {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: transparent;
+    color: #fff;
+    font-size: 0.9rem;
+    font-style: italic;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.usuario-menu-boton:hover,
+.usuario-menu-boton[aria-expanded="true"] {
+    color: #e10600;
+}
+
+.usuario-icono {
+    width: 28px;
+    height: 28px;
+    padding: 5px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.nombre-usuario-navbar {
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.usuario-flecha {
+    font-size: 0.75rem;
+    transition: transform 0.2s ease;
+}
+
+.usuario-menu-boton[aria-expanded="true"] .usuario-flecha {
+    transform: rotate(180deg);
+}
+
+.usuario-menu-desplegable {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 1100;
+    min-width: 170px;
+    padding: 6px;
+    background: #111;
+    border: 1px solid #e10600;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+.usuario-menu-desplegable.abierto {
+    display: block;
+}
+
+.cerrar-sesion-boton {
+    width: 100%;
+    padding: 10px 12px;
+    background: transparent;
+    color: #fff;
+    text-align: left;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.cerrar-sesion-boton:hover {
+    background: #e10600;
+}
+
+.usuario-login {
+    display: flex !important;
+    align-items: center;
+    min-height: 48px;
+}
+
 /* Se activa solo en pantallas de 768px o menos (Celulares y Tablets) */
 @media (max-width: 768px) {
 

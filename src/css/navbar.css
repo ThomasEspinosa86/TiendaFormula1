@@ -26,10 +26,6 @@
     padding: 0;
 }
 
-.navbar-links li{
-    border-right: 1px solid #e10600
-}
-
 .navbar-links a{
     display: flex;
     align-items: center;
@@ -185,6 +181,18 @@ pagina web y sus ajustes */
     cursor: pointer;
 }
 #mini-carrito-panel .btn-quitar:hover { color: #e10600; }
+#mini-carrito-panel .mini-cantidad { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+#mini-carrito-panel .mini-cantidad button {
+    width: 26px;
+    height: 26px;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    background: none;
+    color: #fff;
+    line-height: 1;
+    cursor: pointer;
+}
+#mini-carrito-panel .mini-cantidad button:hover { border-color: #e10600; background: #e10600; }
 #mini-carrito-panel .mini-total-fila {
     display: flex;
     justify-content: space-between;

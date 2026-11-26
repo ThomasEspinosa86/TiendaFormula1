@@ -323,6 +323,11 @@ function dibujarMiniCarrito() {
       '<div class="flex-grow-1">' +
         '<p class="mini-nombre">' + escaparTexto(producto.nombre) + '</p>' +
         '<small>' + producto.cantidad + ' x ' + formatearPrecio(producto.precio) + '</small>' +
+        '<div class="mini-cantidad">' +
+          '<button type="button" data-accion="menos" data-id="' + producto.id + '" aria-label="Disminuir cantidad">&minus;</button>' +
+          '<span>' + producto.cantidad + '</span>' +
+          '<button type="button" data-accion="mas" data-id="' + producto.id + '" aria-label="Aumentar cantidad">+</button>' +
+        '</div>' +
       '</div>' +
       '<button type="button" class="btn-quitar" data-accion="eliminar" data-id="' + producto.id + '" aria-label="Eliminar producto">&times;</button>' +
     '</div>';

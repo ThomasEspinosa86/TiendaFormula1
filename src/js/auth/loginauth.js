@@ -28,7 +28,7 @@ if (formularioRegistro !== null) {
     }
 
     if (correo === CUENTA_ADMINISTRADOR.correo) {
-      alert("Este correo está reservado");
+      Avisos.toast("Este correo está reservado", { tipo: 'error' });
       return;
     }
 
@@ -80,11 +80,6 @@ if (formularioRegistro !== null) {
     for (let i = 0; i < usuarios.length; i++) {
       if (usuarios[i].correo.toLowerCase() === correo) {
         Avisos.toast("Este correo ya está registrado", { tipo: 'error' });
-        Avisos.toast("Este correo ya está registrado", { tipo: 'error' });
-        
-      if (usuarios[i].correo.toLowerCase() === correo) {
-        alert("Este correo ya está registrado");
-        main
         return;
       }
     }
@@ -102,11 +97,8 @@ if (formularioRegistro !== null) {
     usuarios.push(usuario);
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-        // Muestra la lista guardada, confirma el registro y abre el inicio de sesión.
-    console.log(JSON.stringify(usuarios, null, 2));
-    Avisos.toast("Registro exitoso. Ya puede iniciar sesión.", { tipo: 'exito' });
-
-    // Espera un momento para que se alcance a leer el aviso.
+    // Confirma el registro y abre el inicio de sesión.
+        Avisos.toast("Registro exitoso", { tipo: 'exito' });
     setTimeout(function () {
       window.location.href = "login.html";
     }, 1500);
@@ -170,29 +162,31 @@ if (formularioLogin !== null) {
       }
     }
 
-     // Si encontró al usuario, lo guarda y abre el dashboard de administración.
-  if (usuarioEncontrado !== null) {
-    localStorage.setItem("usuarioActivo", JSON.stringify(usuarioEncontrado));
-    console.log(JSON.stringify(usuarioEncontrado, null, 2));
-    Avisos.toast("Bienvenido", { tipo: 'exito' });
-    let volverA = sessionStorage.getItem("volverDespuesLogin");
-    let destino = "../../pages/admin/dashboard.html";
+    // Guarda la sesión y dirige cada rol a su página inicial.
+    if (usuarioEncontrado !== null) {
+      localStorage.setItem("usuarioActivo", JSON.stringify(usuarioEncontrado));
+      Avisos.toast("Bienvenido", { tipo: 'exito' });
 
-    if (volverA !== null) {
-      sessionStorage.removeItem("volverDespuesLogin");
-      destino = volverA;
-    }
+      let volverA = sessionStorage.getItem("volverDespuesLogin");
 
-    // Espera un momento para que se alcance a leer el aviso.
+
     setTimeout(function () {
-      window.location.href = destino;
+      if (volverA !== null) {
+        sessionStorage.removeItem("volverDespuesLogin");
+        window.location.href = volverA;
+      } else if (usuarioEncontrado.rol === "admin") {
+        window.location.href = "../../pages/admin/dashboard.html";
+      } else {
+        window.location.href = "../../index.html";
+      }
     }, 1500);
-  } else {
-    // Si no encontró una coincidencia, informa que los datos son incorrectos.
-    Avisos.toast("Correo o contraseña incorrectos", { tipo: 'error' });
-   }
-});
+    } else {
+      // Si no encontró una coincidencia, informa que los datos son incorrectos.
+      Avisos.toast("Correo o contraseña incorrectos", { tipo: 'error' });
+    }
+  });
 }
+
 // Este botón permite mostrar u ocultar la contraseña del inicio de sesión.
 let botonVerLoginPassword = document.getElementById("btn-ver-login-password");
 

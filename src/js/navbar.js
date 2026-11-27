@@ -1,13 +1,27 @@
 // Raíz del proyecto, calculada desde este archivo (src/js/navbar.js).
 // Así el navbar carga igual desde index.html, pages/ o pages/shop/, en Live Server y en GitHub Pages.
 const raizProyecto = new URL("../../", document.currentScript.src);
+const hojaEstilosNavbar = document.createElement("link");
+hojaEstilosNavbar.rel = "stylesheet";
+hojaEstilosNavbar.href = new URL("src/css/navbar.css", raizProyecto).href;
+const estilosNavbarListos = new Promise((resolver, rechazar) => {
+    hojaEstilosNavbar.addEventListener("load", resolver, { once: true });
+    hojaEstilosNavbar.addEventListener("error", () => {
+        rechazar(new Error("No se pudieron cargar los estilos del menú."));
+    }, { once: true });
+});
+document.head.appendChild(hojaEstilosNavbar);
 
 document.addEventListener("DOMContentLoaded",() => {
     const navbarContainer = document.getElementById("navbar-container");
 
     if(navbarContainer) {
-        fetch(new URL("src/components/navbar.html", raizProyecto))
-        .then(response => {
+        Promise.all([
+            estilosNavbarListos,
+            fetch(new URL("src/components/navbar.html", raizProyecto))
+        ])
+        .then(resultados => {
+            const response = resultados[1];
             if (!response.ok) {
                 throw new Error("No se pudo cargar el menú.");
             }

@@ -37,3 +37,11 @@ Como el DRS en pista, buscamos darte ese empujón extra: una experiencia de comp
 * **HTML5 & CSS3:** Estructura y diseño adaptable para la web.
 * **Bootstrap:** Componentes y maquetación ágil.
 * **JavaScript (ES6):** Interacción dinámica y lógica de negocio.
+
+## Acceso de demostración
+
+La cuenta de administrador para probar:
+
+* **Correo:** `admin@zonadrs.com`
+* **Contraseña:** `F1ZonaDRS!2026`
+

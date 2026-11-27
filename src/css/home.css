@@ -45,8 +45,10 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--f1-white); outl
 .hero-content { min-height: 88vh; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2; }
 .display-title { font-size: clamp(3.2rem, 9vw, 7rem); line-height: .95; color: var(--f1-white); margin-bottom: 1rem; }
 .hero-text { color: var(--f1-white); font-size: 1.35rem; max-width: 560px; margin-bottom: 2rem; }
-.hero-img { position: absolute; right: 6%; bottom: 0; height: 92%; width: auto; max-width: 45%; object-fit: cover; border-radius: 16px 16px 0 0; z-index: 1; }
-.hero-slide:first-child .hero-img { filter: brightness(.8) saturate(.8); box-shadow: 0 0 60px 12px rgba(0, 0, 0, .6); }
+/* Todas las fotos ocupan la mitad derecha y se desvanecen hacia el fondo */
+.hero-img { position: absolute; top: 0; right: 0; width: 55%; height: 100%; object-fit: cover; object-position: center top; z-index: 1; -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 45%); mask-image: linear-gradient(to right, transparent 0%, #000 45%); }
+.hero-slide-3 .hero-img { object-position: center; }
+.hero-slide:first-child .hero-img { object-position: center 40%; -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 35%); mask-image: linear-gradient(to right, transparent 0%, #000 35%); }
 .carousel-indicators [data-bs-target] { width: 60px; height: 4px; border: 0; }
 .btn-hero { align-self: flex-start; font-weight: 600; text-transform: uppercase; padding: .9rem 2.4rem; border-radius: 8px; color: var(--f1-black); transition: transform .25s, background .25s, color .25s; }
 .btn-hero:hover { background: var(--f1-black); color: var(--f1-white); transform: scale(1.12); }

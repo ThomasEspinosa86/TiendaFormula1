@@ -36,6 +36,17 @@ body {
 }
 .form-check-label { font-size: .85rem; }
 
+.catalogo-busqueda { width: min(100%, 220px); }
+
+#zona-alertas {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 2000;
+  width: 340px;
+  max-width: calc(100% - 32px);
+}
+
 .form-check-input:checked {
   background-color: var(--primary);
   border-color: var(--primary);

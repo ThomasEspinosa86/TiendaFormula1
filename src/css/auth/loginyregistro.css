@@ -445,3 +445,6 @@ a:focus-visible, button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .aviso, .aviso.saliendo { animation-duration: .01ms; }
 }
+.auth-alert[hidden] {
+  display: none;
+}

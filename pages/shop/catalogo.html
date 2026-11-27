@@ -108,7 +108,10 @@
 
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
           <p id="contador" class="mb-0 small text-secondary" aria-live="polite">Mostrando 8 de 10 productos</p>
-          <div class="d-flex align-items-center gap-2">
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <label for="busqueda" class="visually-hidden">Buscar producto</label>
+            <input id="busqueda" type="search" class="form-control form-control-sm catalogo-busqueda"
+                   placeholder="Buscar por nombre..." aria-label="Buscar producto">
             <label for="ordenar" class="visually-hidden">Ordenar por</label>
             <select id="ordenar" class="form-select form-select-sm w-auto">
               <option value="recientes" selected>Ordenar por: Más recientes</option>
@@ -313,8 +316,22 @@
     </div>
   </main>
 
+  <footer class="bg-dark text-white py-4">
+    <div class="container text-center">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg" alt="Logo Fórmula 1"
+           class="mb-3" width="80" height="20">
+      <p class="mb-2">Zona DRS · Tu tienda de Fórmula 1</p>
+      <ul class="list-inline mb-2">
+        <li class="list-inline-item"><a class="text-white text-decoration-none" href="../../index.html">Inicio</a></li>
+        <li class="list-inline-item"><a class="text-white text-decoration-none" href="../nosotros.html#contacto">Contacto</a></li>
+      </ul>
+      <p class="small mb-0">&copy; 2026 Zona DRS. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../src/js/carrito.js"></script>
+  <script src="../../src/js/cantidad.js"></script>
   <script src="../../src/js/navbar.js"></script>
 </body>
 </html>

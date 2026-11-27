@@ -4,6 +4,7 @@
 const CLAVE_CARRITO = 'carritoZonaDRS';
 const MAX_CANTIDAD = 10;
 const URL_LOGIN = new URL('../../pages/auth/login.html', document.currentScript.src).href;
+const URL_PANEL_ADMIN = new URL('../../pages/admin/dashboard.html', document.currentScript.src).href;
 
 function obtenerUsuarioActivo() {
   try {
@@ -27,6 +28,9 @@ function actualizarUsuarioNavbar() {
 
     if (usuario && usuario.nombre) {
       item.className = 'usuario-menu';
+      const enlacePanelAdmin = usuario.rol === 'admin'
+        ? '<a href="' + URL_PANEL_ADMIN + '" class="panel-admin-boton" role="menuitem">Panel administrador</a>'
+        : '';
       item.innerHTML =
         '<button type="button" class="usuario-menu-boton" aria-expanded="false" aria-haspopup="menu">' +
         '<img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="" class="nav-icon usuario-icono">' +
@@ -34,6 +38,7 @@ function actualizarUsuarioNavbar() {
         '<span class="usuario-flecha" aria-hidden="true">&#9662;</span>' +
         '</button>' +
         '<div class="usuario-menu-desplegable" role="menu">' +
+        enlacePanelAdmin +
         '<button type="button" class="cerrar-sesion-boton" role="menuitem">Cerrar sesión</button>' +
         '</div>';
 

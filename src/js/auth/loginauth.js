@@ -1,13 +1,9 @@
-// Esta función muestra en consola los usuarios guardados hasta el momento.
-function verUsuarios() {
-  let usuarios = JSON.parse(localStorage.getItem("usuarios"));
-
-  if (usuarios === null) {
-    usuarios = [];
-  }
-
-  console.log(JSON.stringify(usuarios, null, 2));
-}
+const CUENTA_ADMINISTRADOR = {
+  nombre: "Administrador",
+  correo: "admin@zonadrs.com",
+  password: "F1ZonaDRS!2026",
+  rol: "admin"
+};
 
 // Este código solo se ejecuta si la página tiene el formulario de registro.
 let formularioRegistro = document.getElementById("form-registro");
@@ -19,7 +15,7 @@ if (formularioRegistro !== null) {
 
     // Lee los valores de todos los campos del formulario de registro.
     let nombre = document.getElementById("reg-nombre").value;
-    let correo = document.getElementById("reg-correo").value;
+    let correo = document.getElementById("reg-correo").value.trim().toLowerCase();
     let telefono = document.getElementById("reg-telefono").value;
     let equipo = document.getElementById("reg-equipo").value;
     let password = document.getElementById("reg-password").value;
@@ -28,6 +24,11 @@ if (formularioRegistro !== null) {
     // Comprueba que ningún campo esté vacío antes de continuar.
     if (nombre === "" || correo === "" || telefono === "" || equipo === "" || password === "" || confirmar === "") {
       alert("Complete todos los campos");
+      return;
+    }
+
+    if (correo === CUENTA_ADMINISTRADOR.correo) {
+      alert("Este correo está reservado");
       return;
     }
 
@@ -77,7 +78,7 @@ if (formularioRegistro !== null) {
 
     // Evita registrar un correo que ya esté guardado.
     for (let i = 0; i < usuarios.length; i++) {
-      if (usuarios[i].correo === correo) {
+      if (usuarios[i].correo.toLowerCase() === correo) {
         alert("Este correo ya está registrado");
         return;
       }
@@ -89,14 +90,14 @@ if (formularioRegistro !== null) {
       correo: correo,
       telefono: telefono,
       equipo: equipo,
-      password: password
+      password: password,
+      rol: "usuario"
     };
 
     usuarios.push(usuario);
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-    // Muestra la lista guardada, confirma el registro y abre el inicio de sesión.
-    console.log(JSON.stringify(usuarios, null, 2));
+    // Confirma el registro y abre el inicio de sesión.
     alert("Registro exitoso");
     window.location.href = "login.html";
   });
@@ -117,7 +118,7 @@ if (formularioLogin !== null) {
     evento.preventDefault();
 
     // Lee el correo y la contraseña que se escribieron en el formulario.
-    let correo = document.getElementById("login-correo").value;
+    let correo = document.getElementById("login-correo").value.trim().toLowerCase();
     let password = document.getElementById("login-password").value;
 
     // Comprueba que el correo y la contraseña no estén vacíos.
@@ -133,19 +134,35 @@ if (formularioLogin !== null) {
       usuarios = [];
     }
 
-    // Busca un usuario que coincida con el correo y la contraseña ingresados.
+    // La cuenta administrativa no se crea desde el formulario de registro.
     let usuarioEncontrado = null;
 
-    for (let i = 0; i < usuarios.length; i++) {
-      if (usuarios[i].correo === correo && usuarios[i].password === password) {
-        usuarioEncontrado = usuarios[i];
+    if (correo === CUENTA_ADMINISTRADOR.correo) {
+      if (password === CUENTA_ADMINISTRADOR.password) {
+        usuarioEncontrado = {
+          nombre: CUENTA_ADMINISTRADOR.nombre,
+          correo: CUENTA_ADMINISTRADOR.correo,
+          rol: CUENTA_ADMINISTRADOR.rol
+        };
+      }
+    } else {
+      for (let i = 0; i < usuarios.length; i++) {
+        if (usuarios[i].correo.toLowerCase() === correo && usuarios[i].password === password) {
+          usuarioEncontrado = {
+            nombre: usuarios[i].nombre,
+            correo: usuarios[i].correo,
+            telefono: usuarios[i].telefono,
+            equipo: usuarios[i].equipo,
+            rol: "usuario"
+          };
+          break;
+        }
       }
     }
 
-    // Si encontró al usuario, lo guarda y abre el dashboard de administración.
+    // Guarda la sesión y dirige cada rol a su página inicial.
     if (usuarioEncontrado !== null) {
       localStorage.setItem("usuarioActivo", JSON.stringify(usuarioEncontrado));
-      console.log(JSON.stringify(usuarioEncontrado, null, 2));
       alert("Bienvenido");
 
       let volverA = sessionStorage.getItem("volverDespuesLogin");
@@ -153,8 +170,10 @@ if (formularioLogin !== null) {
       if (volverA !== null) {
         sessionStorage.removeItem("volverDespuesLogin");
         window.location.href = volverA;
-      } else {
+      } else if (usuarioEncontrado.rol === "admin") {
         window.location.href = "../../pages/admin/dashboard.html";
+      } else {
+        window.location.href = "../../index.html";
       }
     } else {
       // Si no encontró una coincidencia, informa que los datos son incorrectos.

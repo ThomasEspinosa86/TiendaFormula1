@@ -23,7 +23,7 @@ if (formularioRegistro !== null) {
 
     // Comprueba que ningún campo esté vacío antes de continuar.
     if (nombre === "" || correo === "" || telefono === "" || equipo === "" || password === "" || confirmar === "") {
-      alert("Complete todos los campos");
+      Avisos.toast("Complete todos los campos", { tipo: 'error' });
       return;
     }
 
@@ -34,7 +34,7 @@ if (formularioRegistro !== null) {
 
     // Comprueba que la contraseña tenga por lo menos ocho caracteres.
     if (password.length < 8) {
-      alert("La contraseña debe tener mínimo 8 caracteres");
+      Avisos.toast("La contraseña debe tener mínimo 8 caracteres", { tipo: 'error' });
       return;
     }
 
@@ -56,16 +56,16 @@ if (formularioRegistro !== null) {
 
     // Detiene el registro y explica cuál requisito de contraseña falta.
     if (tieneMayuscula === false) {
-      alert("La contraseña debe incluir al menos una letra mayúscula");
+      Avisos.toast("La contraseña debe incluir al menos una letra mayúscula", { tipo: 'error' });
       return;
     } else if (tieneEspecial === false) {
-      alert("La contraseña debe incluir al menos un carácter especial");
+      Avisos.toast("La contraseña debe incluir al menos un carácter especial", { tipo: 'error' });
       return;
     }
 
     // Comprueba que la contraseña escrita dos veces sea la misma.
     if (password !== confirmar) {
-      alert("Las contraseñas no coinciden");
+      Avisos.toast("Las contraseñas no coinciden", { tipo: 'error' });
       return;
     }
 
@@ -79,7 +79,12 @@ if (formularioRegistro !== null) {
     // Evita registrar un correo que ya esté guardado.
     for (let i = 0; i < usuarios.length; i++) {
       if (usuarios[i].correo.toLowerCase() === correo) {
+        Avisos.toast("Este correo ya está registrado", { tipo: 'error' });
+        Avisos.toast("Este correo ya está registrado", { tipo: 'error' });
+        
+      if (usuarios[i].correo.toLowerCase() === correo) {
         alert("Este correo ya está registrado");
+        main
         return;
       }
     }
@@ -97,9 +102,14 @@ if (formularioRegistro !== null) {
     usuarios.push(usuario);
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-    // Confirma el registro y abre el inicio de sesión.
-    alert("Registro exitoso");
-    window.location.href = "login.html";
+        // Muestra la lista guardada, confirma el registro y abre el inicio de sesión.
+    console.log(JSON.stringify(usuarios, null, 2));
+    Avisos.toast("Registro exitoso. Ya puede iniciar sesión.", { tipo: 'exito' });
+
+    // Espera un momento para que se alcance a leer el aviso.
+    setTimeout(function () {
+      window.location.href = "login.html";
+    }, 1500);
   });
 }
 
@@ -123,7 +133,7 @@ if (formularioLogin !== null) {
 
     // Comprueba que el correo y la contraseña no estén vacíos.
     if (correo === "" || password === "") {
-      alert("Ingrese su correo y contraseña");
+      Avisos.toast("Ingrese su correo y contraseña", { tipo: 'error' });
       return;
     }
 
@@ -160,28 +170,29 @@ if (formularioLogin !== null) {
       }
     }
 
-    // Guarda la sesión y dirige cada rol a su página inicial.
-    if (usuarioEncontrado !== null) {
-      localStorage.setItem("usuarioActivo", JSON.stringify(usuarioEncontrado));
-      alert("Bienvenido");
+     // Si encontró al usuario, lo guarda y abre el dashboard de administración.
+  if (usuarioEncontrado !== null) {
+    localStorage.setItem("usuarioActivo", JSON.stringify(usuarioEncontrado));
+    console.log(JSON.stringify(usuarioEncontrado, null, 2));
+    Avisos.toast("Bienvenido", { tipo: 'exito' });
+    let volverA = sessionStorage.getItem("volverDespuesLogin");
+    let destino = "../../pages/admin/dashboard.html";
 
-      let volverA = sessionStorage.getItem("volverDespuesLogin");
-
-      if (volverA !== null) {
-        sessionStorage.removeItem("volverDespuesLogin");
-        window.location.href = volverA;
-      } else if (usuarioEncontrado.rol === "admin") {
-        window.location.href = "../../pages/admin/dashboard.html";
-      } else {
-        window.location.href = "../../index.html";
-      }
-    } else {
-      // Si no encontró una coincidencia, informa que los datos son incorrectos.
-      alert("Correo o contraseña incorrectos");
+    if (volverA !== null) {
+      sessionStorage.removeItem("volverDespuesLogin");
+      destino = volverA;
     }
-  });
-}
 
+    // Espera un momento para que se alcance a leer el aviso.
+    setTimeout(function () {
+      window.location.href = destino;
+    }, 1500);
+  } else {
+    // Si no encontró una coincidencia, informa que los datos son incorrectos.
+    Avisos.toast("Correo o contraseña incorrectos", { tipo: 'error' });
+   }
+});
+}
 // Este botón permite mostrar u ocultar la contraseña del inicio de sesión.
 let botonVerLoginPassword = document.getElementById("btn-ver-login-password");
 

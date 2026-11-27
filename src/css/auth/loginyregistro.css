@@ -271,3 +271,177 @@ a:focus-visible, button:focus-visible {
   .auth-card { padding: 1.75rem 1.25rem; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+
+/* =========================================================
+   Zona DRS · Módulo de avisos (toasts + modal de confirmación)
+   Cambie solo las variables de :root para ajustar los colores
+   a la paleta de home.css.
+   ========================================================= */
+:root {
+  --avisos-fondo: #15151e;        /* fondo del aviso */
+  --avisos-texto: #ffffff;        /* texto (contraste AAA sobre el fondo) */
+  --avisos-acento: #e10600;       /* rojo F1 */
+  --avisos-exito: #2ecc71;
+  --avisos-error: #ff5a52;
+  --avisos-alerta: #ffc107;
+  --avisos-info: #4da3ff;
+}
+
+/* ---------- Contenedor de toasts ---------- */
+.avisos-region {
+  position: fixed;
+  z-index: 1090;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+  padding: 1rem;
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  pointer-events: none;           /* no bloquea la página */
+}
+
+/* ---------- Toast ---------- */
+.aviso {
+  --tipo: var(--avisos-info);
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  width: 100%;
+  max-width: 420px;
+  padding: .875rem .5rem .875rem 1rem;
+  background: var(--avisos-fondo);
+  color: var(--avisos-texto);
+  border-left: 6px solid var(--tipo);
+  border-radius: .5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+  font-family: 'Barlow', system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
+  animation: aviso-entrar .25s ease-out;
+}
+.aviso--exito  { --tipo: var(--avisos-exito); }
+.aviso--error  { --tipo: var(--avisos-error); }
+.aviso--alerta { --tipo: var(--avisos-alerta); }
+.aviso--info   { --tipo: var(--avisos-info); }
+
+.aviso.saliendo { animation: aviso-salir .2s ease-in forwards; }
+
+/* Icono: forma + color (no depende solo del color) */
+.aviso__icono {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--tipo);
+  color: #15151e;
+  font-weight: 800;
+  font-size: 1rem;
+}
+.aviso__cuerpo { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
+.aviso__titulo {
+  margin: 0 0 .125rem;
+  font-family: 'Barlow Condensed', 'Barlow', sans-serif;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+}
+.aviso__texto { margin: 0; }
+
+/* Botón cerrar: área táctil mínima de 44x44 px */
+.aviso__cerrar {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  margin-top: -.5rem;
+  border: 0;
+  background: transparent;
+  color: var(--avisos-texto);
+  font-size: 1.5rem;
+  line-height: 1;
+  border-radius: .5rem;
+  cursor: pointer;
+}
+.aviso__cerrar:hover { background: rgba(255, 255, 255, .12); }
+
+.aviso__cerrar:focus-visible,
+.aviso-btn:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px var(--avisos-acento);
+}
+
+/* Escritorio: abajo a la derecha */
+@media (min-width: 768px) {
+  .avisos-region {
+    left: auto;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    width: 420px;
+    padding: 0;
+    align-items: stretch;
+  }
+}
+
+/* ---------- Modal de confirmación (sobre Bootstrap) ---------- */
+.aviso-modal .modal-content {
+  border: 0;
+  border-top: 6px solid var(--avisos-acento);
+  border-radius: .75rem;
+  color: #15151e;
+  font-family: 'Barlow', system-ui, sans-serif;
+}
+.aviso-modal .modal-title {
+  font-family: 'Barlow Condensed', 'Barlow', sans-serif;
+  font-style: italic;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+}
+.aviso-modal .modal-body { font-size: 1.05rem; line-height: 1.5; }
+.aviso-modal .modal-footer { gap: .5rem; flex-wrap: wrap; }
+
+.aviso-btn {
+  min-height: 44px;
+  padding: .5rem 1.25rem;
+  border-radius: .5rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid #15151e;
+  background: #ffffff;
+  color: #15151e;
+}
+.aviso-btn--principal {
+  background: var(--avisos-acento);
+  border-color: var(--avisos-acento);
+  color: #ffffff;
+}
+.aviso-btn--principal:hover { background: #b80500; border-color: #b80500; }
+.aviso-btn:not(.aviso-btn--principal):hover { background: #f1f1f1; }
+
+/* En pantallas pequeñas los botones ocupan todo el ancho */
+@media (max-width: 575.98px) {
+  .aviso-modal .modal-footer .aviso-btn { flex: 1 1 100%; }
+}
+
+/* ---------- Animaciones ---------- */
+@keyframes aviso-entrar {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes aviso-salir {
+  to { opacity: 0; transform: translateY(12px); }
+}
+
+/* Respeta a quienes reducen el movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .aviso, .aviso.saliendo { animation-duration: .01ms; }
+}

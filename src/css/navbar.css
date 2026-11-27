@@ -285,7 +285,9 @@ pagina web y sus ajustes */
     display: block;
 }
 
+.panel-admin-boton,
 .cerrar-sesion-boton {
+    display: block;
     width: 100%;
     padding: 10px 12px;
     background: transparent;
@@ -293,10 +295,23 @@ pagina web y sus ajustes */
     text-align: left;
     font-weight: 700;
     text-transform: uppercase;
+    text-decoration: none;
+}
+
+.usuario-menu-desplegable a.panel-admin-boton {
+    padding: 10px 12px;
+    color: #fff;
+}
+
+.usuario-menu-desplegable a.panel-admin-boton:hover,
+.usuario-menu-desplegable a.panel-admin-boton:focus-visible {
+    background: #292929;
+    color: #fff;
 }
 
 .cerrar-sesion-boton:hover {
     background: #e10600;
+    color: #fff;
 }
 
 .usuario-login {
